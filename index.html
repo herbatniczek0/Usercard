@@ -55,14 +55,11 @@
     .music-player {width: 90%;right: 5%;}
     .music-icon {font-size: 24px;}
     .socials {gap: 12px;font-size: 18px;}}
-    #visitorCount {position: fixed;bottom: 20px;right: 20px;background-color: rgba(0, 0, 0, 0.7);color: white;font-size: 18px;font-weight: bold;padding: 10px;border-radius: 5px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);}
   </style>
 </head>
 <body>
   <div id="preloader">
     <div class="spinner"></div>
-  </div>
-  <div id="visitorCount"></div>
   <div id="tsparticles"></div>
   <div class="music-icon" id="music-icon">💽</div>
   <div class="music-player" id="music-player">
@@ -185,19 +182,7 @@
 });
 
 volumeRange.addEventListener('input', function() { audio.volume = this.value; });
-      
-      // Preloader hide logic
-      window.onload = function() {
-        document.getElementById('preloader').style.display = 'none';
-      };
-
-      // Visitor counter (you can implement this based on your server-side code if needed)
-      const visitorCountElement = document.getElementById('visitorCount');
-      let visitorCount = 0; // Initialize a visitor count
-      // Update visitor count in a real scenario, for now, it's just an increment.
-      visitorCount++;
-      visitorCountElement.textContent = `Visitors: ${visitorCount}`;
-    });
+});
   </script>
 </body>
 </html>
