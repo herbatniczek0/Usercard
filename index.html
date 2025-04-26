@@ -194,7 +194,7 @@
       volumeRange.addEventListener('input', () => { audio.volume = volumeRange.value; });
 
       // tsParticles & preloader
-     tsParticles.load('tsparticles',{fpsLimit:60,particles:{number:{value:80},color:{value:config.mainColor},shape:{type:'circle'},opacity:{value:0.3},size:{value:3},links:{enable:true,distance:120,color:config.mainColor,opacity:0.3,width:1},move:{enable:true,speed:1}},interactivity:{events:{onHover:{enable:true,mode:'repulse'},onClick:{enable:true,mode:'push'}},modes:{repulse:{distance:100},push:{quantity:4}}},detectRetina:true});
+     tsParticles.load('tsparticles',{fpsLimit:144,particles:{number:{value:80},color:{value:config.mainColor},shape:{type:'circle'},opacity:{value:0.5},size:{value:3},links:{enable:true,distance:120,color:config.mainColor,opacity:0.3,width:1},move:{enable:true,speed:1}},interactivity:{events:{onHover:{enable:true,mode:'repulse'},onClick:{enable:true,mode:'push'}},modes:{repulse:{distance:10},push:{quantity:4}}},detectRetina:true});
       window.addEventListener('load', () => { document.getElementById('preloader').style.display = 'none'; });
     });
   </script>
