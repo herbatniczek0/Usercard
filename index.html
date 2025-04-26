@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Herbatniczek</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- tsParticles -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; font-family: 'Space Grotesk', sans-serif; background: #0c0c0c; color: #fff; overflow: hidden; }
+    a { text-decoration: none; color: inherit; }
+    :root { --main-color: #6b21a8; }
+    #tsparticles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+    .avatar { width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 4px solid var(--main-color); margin-bottom: 16px; }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    h1#profile-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; background: linear-gradient(270deg, #621e99, #9834f5, #621e99); background-size: 600% 600%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 6s linear infinite; }
+    @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    .email { font-size: 14px; opacity: 0.8; margin-bottom: 4px; }
+    .underline { width: 60px; height: 3px; background: var(--main-color); border-radius: 2px; margin: 12px 0 24px; }
+    .links { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 16px; }
+    .card { background: rgba(255,255,255,0.05); backdrop-filter: blur(4px); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; border: 1px solid transparent; transition: transform .2s, box-shadow .2s, border .2s; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 0 20px var(--main-color); border-color: var(--main-color); }
+    .icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: var(--main-color); }
+    .card-image { width: 24px; height: 24px; object-fit: contain; }
+    .content { flex: 1; }
+    .title { font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 8px; color: #fff; }
+    .badge { background: var(--main-color); color: #fff; font-size: 12px; padding: 2px 6px; border-radius: 8px; }
+    .subtitle { font-size: 13px; opacity: 0.8; margin-top: 4px; color: #ddd; }
+    .music-icon { position: absolute; top: 20px; right: 20px; font-size: 28px; cursor: pointer; z-index: 2; color: #fff; }
+    .music-player { position: absolute; top: 60px; right: 20px; width: 300px; background: rgba(0,0,0,0.5); color: #fff; border-radius: 12px; padding: 16px; display: none; flex-direction: column; gap: 12px; z-index: 2; }
+    .music-player label { font-size: 14px; }
+    .music-player select, .music-player input[type=number], .music-player input[type=range] { width: 100%; border: none; border-radius: 8px; padding: 6px; background: rgba(255,255,255,0.2); color: #fff; }
+    .socials { display: flex; gap: 16px; margin: 32px 0 12px; }
+    .socials a { font-size: 20px; opacity: 0.8; transition: opacity .2s; color: #fff; }
+    .socials a:hover { opacity: 1; }
+    .credit { font-size: 13px; opacity: 0.8; margin-top: 24px; }
+    .credit a { color: var(--main-color); font-weight: 600; }
+    .footer-stats { position: absolute; bottom: 12px; right: 20px; font-size: 12px; opacity: 0.6; display: flex; gap: 12px; }
+  </style>
+</head>
+<body>
+  <div id="tsparticles"></div>
+  <div class="music-icon" id="music-icon">💽</div>
+  <div class="music-player" id="music-player">
+    <label for="track-select">Wybierz muzykę:</label>
+    <select id="track-select"></select>
+    <label for="minute-input">Minuta:</label>
+    <input type="number" id="minute-input" min="0" value="0">
+    <label for="volume-range">Głośność:</label>
+    <input type="range" id="volume-range" min="0" max="1" step="0.01" value="0.5">
+  </div>
+  <div class="wrapper">
+    <div class="avatar"><img id="avatar" src="avatar.jpg" alt="Avatar"></div>
+    <h1 id="profile-name"></h1>
+    <div class="email" id="profile-email"></div>
+    <div class="underline" id="underline"></div>
+    <div class="links" id="links-container"></div>
+    <div class="socials" id="socials-container"></div>
+    <div class="credit">Created by <a id="credit-link" href="#"></a></div>
+  </div>
+  <div class="footer-stats" id="stats-container"></div>
+  <audio id="audio" hidden></audio>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const config = {
+        mainColor: '#6b21a8',
+        avatarSrc: 'https://cdn.discordapp.com/attachments/1364349065021755435/1365778124926746704/6rCdsQc.GIF?ex=680e8b7f&is=680d39ff&hm=c9b0ae252880d61de0785a4b91ec226627ae518a237d6efd4a1f4309f3f3122e&',
+        name: 'Herbatniczek',
+        email: '12herbatniczek34@gmail.com',
+        links: [
+          { icon: 'https://cdn.discordapp.com/attachments/1364349065021755435/1365765963525521560/72xWiS9.jpg?ex=680e802c&is=680d2eac&hm=d30c68612a85491fd0105fe7ff13e2f8e405812b5464595d2b2d880976114911&', title: 'Discord', badge: 'Profil', subtitle: 'Mój discord profil', url: 'https://discord.com/users/1138522840174436473' },
+          { icon: 'https://cdn.discordapp.com/attachments/1364349065021755435/1365773008735703220/abt0kqM.png?ex=680e86bc&is=680d353c&hm=89b46b45a8de17112673ef2cb6285a8d274c88fafffd72d48dcb14787bac05f5&', title: 'Twitch', badge: 'Herbatniczek0', subtitle: 'Mój Twitch', url: 'https://www.twitch.tv/herbatniczek0' },
+          { icon: 'https://cdn.discordapp.com/attachments/1364349065021755435/1365771957336932462/kfjxTEC.png?ex=680e85c1&is=680d3441&hm=eb586cd0e6646260d1fccee1c87887d3d2efc5991ae7e5b30f58c2ee268a0115&', title: 'Spotify',  subtitle: 'Mój profil na spotify', url: 'https://open.spotify.com/user/313kut3bdmj7mlaneks7xrfyqxqe?si=306a85bc68e840fe' },
+          { icon: 'https://cdn.discordapp.com/icons/892823463176327188/a_104c1078ff6af7dd227e9ab57149e8b7.gif?size=480&width=461&height=461', title: 'MajesticRP', subtitle: 'Serwer na którym gram aktualnie', url: 'https://discord.gg/gta5majestic' },
+          { icon: 'https://cdn.discordapp.com/icons/892823463176327188/a_104c1078ff6af7dd227e9ab57149e8b7.gif?size=480&width=461&height=461', title: '27TheDemons', badge: 'Aktualna Rodzina', subtitle: 'Aktualna rodzina w której latam Postać #2 ', url: 'https://discord.gg/2AsU2BhKEA' },
+          { icon: 'https://cdn.discordapp.com/icons/1323101384421281832/7f45ce6a72c4d54899f829a006b59c0c.webp?size=480https://cdn.discordapp.com/attachments/1364349065021755435/1365778750050144416/WZ3jp9E.jpg?ex=680e8c14&is=680d3a94&hm=ad57a35c6405a8adc181186d60a6dbdc49f40608b164a3b50b6311d7bb093f32&', title: 'OnelifeRP', subtitle: 'Serwer na którym gram aktualnie na fivem', url: 'https://discord.gg/XMTjGfhThh' },
+          
+        ],
+        socials: [ { icon: 'fab fa-youtube', url: '#' } ],
+        credit: { text: 'Herbatniczek', url: 'http://127.0.0.1:3000/c:/Users/skrzy/OneDrive/Pulpit/STRONA/index.html#' },
+        tracks: [
+          { name: 'Brak piosenki', src: '' },
+          { name: 'PRO8L3M - Ground Zero', src: 'PRO8L3M - Ground Zero.mp3' },
+          { name: 'Bajorson, Dawid Obserwator, DJ Killer, David Tango - Bailando (Lose Control Remix)', src: 'Bajorson, Dawid Obserwator, DJ Killer, David Tango - Bailando (Lose Control Remix).mp3' }
+        ]
+      };
+      // Apply settings
+      document.documentElement.style.setProperty('--main-color', config.mainColor);
+      document.getElementById('avatar').src = config.avatarSrc;
+      document.getElementById('profile-name').textContent = config.name;
+      document.getElementById('profile-email').innerHTML = 'Business: <a href="mailto:' + config.email + '">' + config.email + '</a>';
+      document.getElementById('credit-link').textContent = config.credit.text;
+      document.getElementById('credit-link').href = config.credit.url;
+      document.getElementById('underline').style.background = config.mainColor;
+            // Links
+      const linksContainer = document.getElementById('links-container');
+      linksContainer.innerHTML = '';
+      config.links.forEach(link => {
+        const a = document.createElement('a');
+        a.href = link.url;
+        a.className = 'card';
+        const isImage = /^(https?:\/\/.*\.(?:png|jpe?g|svg|gif))(\?.*)?$/i.test(link.icon);
+        a.innerHTML = `
+          <div class=\"icon\">${isImage
+            ? `<img src=\"${link.icon}\" alt=\"${link.title} icon\" class=\"card-image\">`
+            : `<i class=\"${link.icon}\"></i>`}
+          </div>
+          <div class=\"content\">
+            <div class=\"title\">
+              ${link.title}${link.badge ? ` <span class=\"badge\">${link.badge}</span>` : ''}
+            </div>
+            <div class=\"subtitle\">${link.subtitle}</div>
+          </div>
+        `;
+        linksContainer.appendChild(a);
+      });
+
+      // Socials
+      const socContainer = document.getElementById('socials-container'); socContainer.innerHTML = '';
+      config.socials.forEach(s => {
+        const a = document.createElement('a'); a.href = s.url; a.innerHTML = '<i class="' + s.icon + '"></i>';
+        socContainer.appendChild(a);
+      });
+      // Music
+      const iconEl = document.getElementById('music-icon');
+      const panel = document.getElementById('music-player');
+      const audio = document.getElementById('audio');
+      const select = document.getElementById('track-select'); select.innerHTML = '';
+      const minuteInput = document.getElementById('minute-input');
+      const volumeRange = document.getElementById('volume-range');
+      config.tracks.forEach(t => { const opt = document.createElement('option'); opt.value = t.src; opt.textContent = t.name; select.appendChild(opt); });
+      iconEl.addEventListener('click', function() { panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex'; });
+      select.addEventListener('change', function() {
+        audio.src = this.value; audio.load(); audio.play();
+        audio.onloadedmetadata = function() { minuteInput.max = Math.floor(audio.duration / 60); };
+      });
+      minuteInput.addEventListener('change', function() { audio.currentTime = this.value * 60; });
+      volumeRange.addEventListener('input', function() { audio.volume = this.value; });
+      // Particles
+      tsParticles.load('tsparticles', {
+        fpsLimit: 60,
+        particles: {
+          number: { value: 80 },
+          color: { value: config.mainColor },
+          shape: { type: 'circle' },
+          opacity: { value: 0.3 },
+          size: { value: 3 },
+          links: { enable: true, distance: 120, color: config.mainColor, opacity: 0.3, width: 1 },
+          move: { enable: true, speed: 1 }
+        },
+        interactivity: {
+          events: { onHover: { enable: true, mode: 'repulse' }, onClick: { enable: true, mode: 'push' } },
+          modes: { repulse: { distance: 100 }, push: { quantity: 4 } }
+        },
+        detectRetina: true
+      });
+    });
+  </script>
+</body>
+</html>
