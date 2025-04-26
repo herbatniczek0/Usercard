@@ -43,9 +43,24 @@
     .credit { font-size: 13px; opacity: 0.8; margin-top: 24px; }
     .credit a { color: var(--main-color); font-weight: 600; }
     .footer-stats { position: absolute; bottom: 12px; right: 20px; font-size: 12px; opacity: 0.6; display: flex; gap: 12px; }
+    #preloader {position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: #0c0c0c;display: flex;align-items: center;justify-content: center;z-index: 9999;}
+    .spinner {border: 6px solid rgba(255,255,255,0.2);border-top: 6px solid var(--main-color);border-radius: 50%;width: 50px;height: 50px;animation: spin 1s linear infinite;}
+    @keyframes spin {0% { transform: rotate(0deg); }100% { transform: rotate(360deg); }}
+    @media (max-width: 768px) {
+    .wrapper {padding: 20px 10px;}
+    .avatar {width: 100px;height: 100px;border: 3px solid var(--main-color);}
+    h1#profile-name {font-size: 24px;}
+    .links {max-width: 100%;gap: 12px;}
+    .card {padding: 12px 16px;}
+    .music-player {width: 90%;right: 5%;}
+    .music-icon {font-size: 24px;}
+    .socials {gap: 12px;font-size: 18px;}}
   </style>
 </head>
 <body>
+  <div id="preloader">
+    <div class="spinner"></div>
+  </div>
   <div id="tsparticles"></div>
   <div class="music-icon" id="music-icon">💽</div>
   <div class="music-player" id="music-player">
@@ -161,6 +176,12 @@
         },
         detectRetina: true
       });
+      window.addEventListener('load', function() {
+  const preloader = document.getElementById('preloader');
+  preloader.style.opacity = '0';
+  setTimeout(() => preloader.style.display = 'none', 500);
+});
+
     });
   </script>
 </body>
