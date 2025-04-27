@@ -5,6 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Herbatniczek</title>
+  <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1364349065021755435/1365778124926746704/6rCdsQc.GIF?ex=680e8b7f&is=680d39ff&hm=c9b0ae252880d61de0785a4b91ec226627ae518a237d6efd4a1f4309f3f3122e&">
+
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
   <!-- CSS Variables for Dark Theme Only -->
@@ -194,9 +196,16 @@
       volumeRange.addEventListener('input', () => { audio.volume = volumeRange.value; });
 
       // tsParticles & preloader
-     tsParticles.load('tsparticles',{fpsLimit:144,particles:{number:{value:80},color:{value:config.mainColor},shape:{type:'circle'},opacity:{value:0.4},size:{value:3},links:{enable:true,distance:120,color:config.mainColor,opacity:0.3,width:1},move:{enable:true,speed:1}},interactivity:{events:{onHover:{enable:true,mode:'repulse'},onClick:{enable:true,mode:'push'}},modes:{repulse:{distance:10},push:{quantity:4}}},detectRetina:true});
+     tsParticles.load('tsparticles',{fpsLimit:144,particles:{number:{value:80},color:{value:config.mainColor},shape:{type:'circle'},opacity:{value:0.5},size:{value:3},links:{enable:true,distance:120,color:config.mainColor,opacity:0.3,width:1},move:{enable:true,speed:1}},interactivity:{events:{onHover:{enable:true,mode:'repulse'},onClick:{enable:true,mode:'push'}},modes:{repulse:{distance:10},push:{quantity:4}}},detectRetina:true});
       window.addEventListener('load', () => { document.getElementById('preloader').style.display = 'none'; });
     });
+  const titles = ["H", "He", "Her", "Her", "Herb", "Herba", "Herbat", "Herbatn", "Herbatni", "Herbatnic", "Herbatnicz", "Herbatnicze", "Herbatniczek"];
+  let index = 0;
+
+  setInterval(() => {
+    document.title = titles[index];
+    index = (index + 1) % titles.length;
+  }, 300); // zmiana co 2 sekundy
   </script>
 </body>
 </html>
