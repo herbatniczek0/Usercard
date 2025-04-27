@@ -101,9 +101,7 @@
     <div class="credit">Created by <a id="credit-link" href="#"></a></div>
   </div>
   <audio id="audio" hidden></audio>
-
-  <script defer data-domain="herbatniczek.online" src="https://plausible.io/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"></script>
-  <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>  
+  
   <script defer src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
   <script defer>
@@ -120,14 +118,17 @@
           { icon: 'img/EOKgDgT.png', title: 'MajesticRP', subtitle: 'Serwer na którym gram aktualnie', url: 'https://discord.gg/gta5majestic' },
           { icon: 'img/sryoNo2.png', title: 'Crystal Dynasty', badge: 'Aktualna Rodzina', subtitle: 'Aktualna rodzina w której latam Postać #2 ', url: 'https://discord.gg/2AsU2BhKEA' },
           { icon: 'img/7f45ce6a72c4d54899f829a006b59c0c.png', title: 'OnelifeRP', subtitle: 'Serwer na którym gram aktualnie na fivem', url: 'https://discord.gg/XMTjGfhThh' },
-          
+          { icon: 'img/72xWiS9.png', title: 'Własny profil',badge: 'Tymczasowo OFF', subtitle: 'Chcesz mieć własną strone? Napisz do mnie na PV to się dogadamy', url: 'Link do profilu' },
         ],
         socials: [ { icon: 'fab fa-youtube', url: '#' } ],
         credit: { text: 'Herbatniczek', url: 'https://herbatniczek.online/' },
+      
         tracks: [
           { name: 'Brak piosenki', src: '' },
-          { name: 'MVP - purpless remix - purpless', src: 'MVP - purpless remix - purpless.mp3' },
-          { name: 'Bajorson, Dawid Obserwator, DJ Killer, David Tango - Bailando (Lose Control Remix)', src: 'Bajorson, Dawid Obserwator, DJ Killer, David Tango - Bailando (Lose Control Remix).mp3' }
+          { name: 'MVP - purpless remix - purpless', src: 'music/MVP - purpless remix - purpless.mp3' },
+          { name: 'Bajorson, Dawid Obserwator, DJ Killer, David Tango - Bailando (Lose Control Remix)', src: 'music/Bajorson, Dawid Obserwator, DJ Killer, David Tango - Bailando (Lose Control Remix).mp3' },
+          { name: 'Bedoes & Lanek feat. Kosa, White 2115 - Wschód (MOORAH REMIX)', src: 'music/Bedoes & Lanek feat. Kosa, White 2115 - Wschód (MOORAH REMIX).mp3' },
+          { name: 'PRO8L3M - Ground Zero', src: 'music/PRO8L3M - Ground Zero.mp3' }
         ]
       };
       function saveState() {
@@ -176,7 +177,7 @@
       document.documentElement.style.setProperty('--main-color', config.mainColor);
       document.getElementById('avatar').src = config.avatarSrc;
       document.getElementById('profile-name').textContent = config.name;
-      document.getElementById('profile-email').innerHTML = 'Business: <a href="mailto:'+config.email+'">'+config.email+'</a>';
+      document.getElementById('profile-email').innerHTML = 'Mój Gmail: <a href="mailto:'+config.email+'">'+config.email+'</a>';
       document.getElementById('credit-link').textContent = config.credit.text;
       document.getElementById('credit-link').href = config.credit.url;
       document.getElementById('underline').style.background = config.mainColor;
@@ -191,7 +192,7 @@
       config.socials.forEach(s=>{ const a=document.createElement('a'); a.href=s.url; a.target='_blank'; a.rel='noopener noreferrer'; a.innerHTML=`<i class="${s.icon}"></i>`; soc.appendChild(a); });
       config.tracks.forEach(t=>{ const o=document.createElement('option'); o.value=t.src; o.textContent=t.name; select.appendChild(o); });
       loadState();
-      tsParticles.load('tsparticles',{fpsLimit:144,particles:{number:{value:80},color:{value:config.mainColor},shape:{type:'circle'},opacity:{value:0.5},size:{value:3},links:{enable:true,distance:120,color:config.mainColor,opacity:0.3,width:1},move:{enable:true,speed:1}},interactivity:{events:{onHover:{enable:true,mode:'repulse'},onClick:{enable:true,mode:'push'}},modes:{repulse:{distance:25},push:{quantity:5}}},detectRetina:true});
+      tsParticles.load('tsparticles',{fpsLimit:72,particles:{number:{value:80},color:{value:config.mainColor},shape:{type:'circle'},opacity:{value:0.5},size:{value:3},links:{enable:true,distance:120,color:config.mainColor,opacity:0.3,width:1},move:{enable:true,speed:1}},interactivity:{events:{onHover:{enable:true,mode:'repulse'},onClick:{enable:true,mode:'push'}},modes:{repulse:{distance:25},push:{quantity:5}}},detectRetina:true});
       window.addEventListener('load',()=>document.getElementById('preloader').style.display='none');
     });
     const titles=["‏‎","H","He","Her","Herb","Herba","Herbat","Herbatn","Herbatni","Herbatnic","Herbatnicz","Herbatnicze","Herbatniczek","Herbatniczek -" ,"Herbatniczek - I" ,"Herbatniczek - In" ,"Herbatniczek - Inf" ,"Herbatniczek - Info", "Herbatniczek - Inf" ,"Herbatniczek - In" ,"Herbatniczek - I" ,"Herbatniczek -" ,"Herbatniczek", "Herbatnicze", "Herbatnicz", "Herbatnic", "Herbatni", "Herbatn", "Herbat", "Herba", "Herb", "Her", "He", "H", "‏‎" ];
