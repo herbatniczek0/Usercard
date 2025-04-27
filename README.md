@@ -51,7 +51,7 @@ Interaktywna, responsywna wizytówka online z odtwarzaczem muzyki, animowanym t�
 
 1. Sklonuj repozytorium:
    ```bash
-   git clone https://github.com/twoj-repo/usercard.git
+   git clone https://github.com/herbatniczek0/Usercard
    ```
 2. Przejdź do katalogu projektu:
    ```bash
