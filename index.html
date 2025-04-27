@@ -191,7 +191,7 @@
       config.socials.forEach(s=>{ const a=document.createElement('a'); a.href=s.url; a.target='_blank'; a.rel='noopener noreferrer'; a.innerHTML=`<i class="${s.icon}"></i>`; soc.appendChild(a); });
       config.tracks.forEach(t=>{ const o=document.createElement('option'); o.value=t.src; o.textContent=t.name; select.appendChild(o); });
       loadState();
-      tsParticles.load('tsparticles',{fpsLimit:144,particles:{number:{value:80},color:{value:config.mainColor},shape:{type:'circle'},opacity:{value:0.5},size:{value:3},links:{enable:true,distance:120,color:config.mainColor,opacity:0.3,width:1},move:{enable:true,speed:1}},interactivity:{events:{onHover:{enable:true,mode:'repulse'},onClick:{enable:true,mode:'push'}},modes:{repulse:{distance:10},push:{quantity:4}}},detectRetina:true});
+      tsParticles.load('tsparticles',{fpsLimit:144,particles:{number:{value:80},color:{value:config.mainColor},shape:{type:'circle'},opacity:{value:0.5},size:{value:3},links:{enable:true,distance:120,color:config.mainColor,opacity:0.3,width:1},move:{enable:true,speed:1}},interactivity:{events:{onHover:{enable:true,mode:'repulse'},onClick:{enable:true,mode:'push'}},modes:{repulse:{distance:25},push:{quantity:5}}},detectRetina:true});
       window.addEventListener('load',()=>document.getElementById('preloader').style.display='none');
     });
     const titles=["H","He","Her","Herb","Herba","Herbat","Herbatn","Herbatni","Herbatnic","Herbatnicz","Herbatnicze","Herbatniczek","Herbatniczek -" ,"Herbatniczek - I" ,"Herbatniczek - In" ,"Herbatniczek - Inf" ,"Herbatniczek - Info" ];
