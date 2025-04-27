@@ -69,11 +69,25 @@
       .music-icon {font-size: 24px;}
       .socials {gap: 12px;font-size: 18px;}
     }
+    #visitor-counter {
+  margin: 24px 0;
+  font-size: 15px;
+  opacity: 0.85;
+  text-align: center;
+}
+#visitor-counter span {
+  font-weight: 600;
+  color: var(--main-color);
+}
+  
   </style>
 </head>
 <body>
   <div id="preloader"><div class="spinner"></div></div>
   <div id="tsparticles"></div>
+  <div id="visitor-counter">
+    Ta strona została odwiedzona: <span id="visit-number">ładowanie…</span> razy!
+  </div>  
   <div class="music-icon" id="music-icon">💽</div>
   <div class="music-player" id="music-player">
     <div class="controls">
@@ -198,6 +212,26 @@
     const titles=["‏‎","H","He","Her","Herb","Herba","Herbat","Herbatn","Herbatni","Herbatnic","Herbatnicz","Herbatnicze","Herbatniczek","Herbatniczek -" ,"Herbatniczek - I" ,"Herbatniczek - In" ,"Herbatniczek - Inf" ,"Herbatniczek - Info", "Herbatniczek - Inf" ,"Herbatniczek - In" ,"Herbatniczek - I" ,"Herbatniczek -" ,"Herbatniczek", "Herbatnicze", "Herbatnicz", "Herbatnic", "Herbatni", "Herbatn", "Herbat", "Herba", "Herb", "Her", "He", "H", "‏‎" ];
     let idx=0;
     setInterval(()=>{ document.title=titles[idx]; idx=(idx+1)%titles.length; },400);
+    document.addEventListener('DOMContentLoaded', () => {
+      // Ustawienia licznika wizyt
+      const visitCounter = document.getElementById('visitor-counter');
+      visitCounter.style.display = 'block';
+  
+      // Pobierz licznik wizyt z API CountAPI
+      // Użyj lokalnego API CountAPI, aby uniknąć problemów z CORS
+    const visitEl = document.getElementById('visit-number');
+  
+  // "hit" — inkrementuje licznik i zwraca JSON { namespace, key, value }
+  fetch('https://api.countapi.xyz/hit/herbatniczek/online')
+    .then(res => res.json())
+    .then(data => {
+      visitEl.textContent = data.value;
+    })
+    .catch(err => {
+      console.warn('Błąd pobierania licznika:', err);
+      visitEl.textContent = '–';
+    });
+});
   </script>
 </body>
 </html>
