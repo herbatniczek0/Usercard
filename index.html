@@ -222,7 +222,7 @@
     const visitEl = document.getElementById('visit-number');
   
   // "hit" — inkrementuje licznik i zwraca JSON { namespace, key, value }
-  fetch('https://api.countapi.xyz/hit/herbatniczek/online')
+  fetch('https://api.countapi.xyz/create?namespace=herbatniczek&key=online&value=0')
     .then(res => res.json())
     .then(data => {
       visitEl.textContent = data.value;
