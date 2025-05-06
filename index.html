@@ -102,9 +102,27 @@
   to   { transform: scale(1);   opacity: 1; }
 }
 
+body.glitch-mode {
+  filter: hue-rotate(90deg) contrast(1.2) brightness(1.1);
+  transition: filter 0.5s ease;
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% { clip-path: inset(0 0 2% 0); }
+  20% { clip-path: inset(2% 0 10% 0); }
+  40% { clip-path: inset(10% 0 5% 0); }
+  60% { clip-path: inset(5% 0 15% 0); }
+  80% { clip-path: inset(15% 0 3% 0); }
+  100% { clip-path: inset(0 0 2% 0); }
+}
+
   </style>
 </head>
 <body>
+  <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#6b21a8">
+  <button id="toggle-glitch" aria-label="Przełącz tryb neon/glitch">🪩</button>
 <div id="easter-egg">
   <div id="egg-content">🎉 Poziom tajny odblokowany! 🎉</div>
 </div>
@@ -182,6 +200,17 @@
         shuffleBtn.style.opacity = isShuffle ? '1' : '0.5';
         audio.src = select.value;
       }
+const btnGlitch = document.getElementById('toggle-glitch');
+btnGlitch.addEventListener('click', () => {
+  document.body.classList.toggle('glitch-mode');
+  // zapamiętaj w localStorage
+  localStorage.setItem('glitch', document.body.classList.contains('glitch-mode'));
+});
+// przy starcie
+if (localStorage.getItem('glitch') === 'true') {
+  document.body.classList.add('glitch-mode');
+}
+
       const audio = document.getElementById('audio');
       const select = document.getElementById('track-select');
       const progressBar = document.getElementById('progress-bar');
@@ -314,8 +343,12 @@ setInterval(showRandomQuote, 2500); // Zmienia cytat co 20 sekund
     }
   });
 })();
-
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log('PWA SW zarejestrowany'))
+      .catch(err => console.error('Błąd rejestracji SW:', err));
+  }
 </script>
 </body>
 </html>
-  
+
