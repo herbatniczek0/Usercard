@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>‏‎</title>
-  <link rel="icon" type="image/png" href="img/iLou6nj.webp">
+  <link rel="icon" type="image/png" href="img/iLou6nj.png">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MCQ155YKQL"></script>
@@ -133,7 +133,7 @@
     <input type="range" id="volume-range" min="0" max="1" step="0.01" value="0.5">
   </div>
   <div class="wrapper" id="main-wrapper">
-    <div class="avatar"><img id="avatar" src="avatar.webp" alt="Avatar" loading="lazy"></div>
+    <div class="avatar"><img id="avatar" src="avatar.jpg" alt="Avatar" loading="lazy"></div>
     <h1 id="profile-name"></h1>
     <div class="email" id="profile-email"></div>
     <div class="underline" id="underline"></div>
@@ -149,18 +149,18 @@
     document.addEventListener('DOMContentLoaded', function() {
       const config = {
         mainColor: '#6b21a8',
-        avatarSrc: 'img/iLou6nj.webp',
+        avatarSrc: 'img/iLou6nj.jpg',
         name: 'Herbatniczek',
         email: '12herbatniczek34@gmail.com',
         links: [
-          { icon: 'img/72xWiS9.webp', title: 'Discord', badge: 'Profil', subtitle: 'Mój discord profil', url: 'https://discord.com/users/1138522840174436473', },
-          { icon: 'img/abt0kqM.webp', title: 'Twitch', badge: 'Herbatniczek0', subtitle: 'Mój Twitch', url: 'https://www.twitch.tv/herbatniczek0' },
-          { icon: 'img/kfjxTEC.webp', title: 'Spotify',  subtitle: 'Mój profil na spotify', url: 'https://open.spotify.com/user/313kut3bdmj7mlaneks7xrfyqxqe?si=306a85bc68e840fe' },
-          { icon: 'img/EOKgDgT.webp', title: 'MajesticRP', subtitle: 'Serwer na którym gram aktualnie', url: 'https://discord.gg/gta5majestic' },
-          { icon: 'img/sryoNo2.webp', title: 'Crystal Dynasty', badge: 'Aktualna Rodzina', subtitle: 'Aktualna rodzina w której latam Postać #2 ', url: 'https://discord.gg/yWj2RWhFC5' },
-          { icon: 'img/7f45ce6a72c4d54899f829a006b59c0c.webp', title: 'OnelifeRP', subtitle: 'Serwer na którym gram aktualnie na fivem', url: 'https://discord.gg/GtPuJusXu4' },
-          { icon: 'img/cdf4474a5b2d06469dfa06bc70c85d10.webp', title: 'Hantle w chmurach', subtitle: 'Właściciel Firmy na serwerze OneLifeRP', url: 'https://discord.gg/tv5sEgr57V' },
-          { icon: 'img/72xWiS9.webp', title: 'Własny profil',badge: 'Tymczasowo OFF', subtitle: 'Chcesz mieć własną strone? Napisz do mnie na PV to się dogadamy', url: 'Link do profilu' },
+          { icon: 'img/72xWiS9.jpg', title: 'Discord', badge: 'Profil', subtitle: 'Mój discord profil', url: 'https://discord.com/users/1138522840174436473', },
+          { icon: 'img/abt0kqM.jpg', title: 'Twitch', badge: 'Herbatniczek0', subtitle: 'Mój Twitch', url: 'https://www.twitch.tv/herbatniczek0' },
+          { icon: 'img/kfjxTEC.jpg', title: 'Spotify',  subtitle: 'Mój profil na spotify', url: 'https://open.spotify.com/user/313kut3bdmj7mlaneks7xrfyqxqe?si=306a85bc68e840fe' },
+          { icon: 'img/EOKgDgT.jpg', title: 'MajesticRP', subtitle: 'Serwer na którym gram aktualnie', url: 'https://discord.gg/gta5majestic' },
+          { icon: 'img/sryoNo2.jpg', title: 'Crystal Dynasty', badge: 'Aktualna Rodzina', subtitle: 'Aktualna rodzina w której latam Postać #2 ', url: 'https://discord.gg/yWj2RWhFC5' },
+          { icon: 'img/7f45ce6a72c4d54899f829a006b59c0c.jpg', title: 'OnelifeRP', subtitle: 'Serwer na którym gram aktualnie na fivem', url: 'https://discord.gg/GtPuJusXu4' },
+          { icon: 'img/cdf4474a5b2d06469dfa06bc70c85d10.jpg', title: 'Hantle w chmurach', subtitle: 'Właściciel Firmy na serwerze OneLifeRP', url: 'https://discord.gg/tv5sEgr57V' },
+          { icon: 'img/72xWiS9.jpg', title: 'Własny profil',badge: 'Tymczasowo OFF', subtitle: 'Chcesz mieć własną strone? Napisz do mnie na PV to się dogadamy', url: 'Link do profilu' },
         ],
         socials: [ { icon: 'fab fa-youtube', url: '#' } ],
         credit: { text: 'Herbatniczek', url: 'https://herbatniczek.online/' },
@@ -229,7 +229,7 @@
         const isImg = /\.(?:png|jpe?g|webp|avif|gif)$/i.test(link.icon);
         a.innerHTML=`<div class="icon">${isImg?`<img src="${link.icon}" alt="${link.title}" class="card-image" loading="lazy">`:`<i class="${link.icon}"></i>`}</div><div class="content"><div class="title">${link.title}${link.badge?`<span class="badge">${link.badge}</span>`:''}</div><div class="subtitle">${link.subtitle}</div></div>`;
         linksContainer.appendChild(a);
-      });
+      })
       const soc=document.getElementById('socials-container');
       config.socials.forEach(s=>{ const a=document.createElement('a'); a.href=s.url; a.target='_blank'; a.rel='noopener noreferrer'; a.innerHTML=`<i class="${s.icon}"></i>`; soc.appendChild(a); });
       config.tracks.forEach(t=>{ const o=document.createElement('option'); o.value=t.src; o.textContent=t.name; select.appendChild(o); });
