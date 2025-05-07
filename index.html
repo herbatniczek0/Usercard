@@ -102,10 +102,39 @@
   from { transform: scale(0.5); opacity: 0; }
   to   { transform: scale(1);   opacity: 1; }
 }
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85); /* półprzezroczyste, żeby widać lekko kontury strony */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  visibility: visible;
+}
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #444;
+  border-top: 5px solid var(--main-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
 
   </style>
 </head>
-<body>
+<body></body>
+<div id="preloader">
+  <div class="spinner"></div>
+</div>
 <meta name="theme-color" content="#6b21a">
 <div id="easter-egg">
   <div id="egg-content">🎉 Poziom tajny odblokowany! 🎉</div>
@@ -321,6 +350,23 @@ setInterval(showRandomQuote, 2500); // Zmienia cytat co 20 sekund
   });
 })();
 
+document.addEventListener('DOMContentLoaded', () => {
+  const pre = document.getElementById('preloader');
+
+  // 1) Ukryj po pełnym załadowaniu window
+  window.addEventListener('load', () => {
+    pre.classList.add('hidden');
+    setTimeout(() => pre.remove(), 600);
+  });
+
+  // 2) Zapewnij, że nie zostanie dłużej niż 12s
+  setTimeout(() => {
+    if (document.body.contains(pre)) {
+      pre.classList.add('hidden');
+      setTimeout(() => pre.remove(), 600);
+    }
+  }, 12000);
+});
 </script>
 </body>
 </html>
