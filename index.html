@@ -133,7 +133,9 @@
     <input type="range" id="volume-range" min="0" max="1" step="0.01" value="0.5">
   </div>
   <div class="wrapper" id="main-wrapper">
-    <div class="avatar"><img id="avatar" src="avatar.png" alt="Avatar" loading="lazy"></div>
+    <div class="avatar">
+      <img id="avatar"src="avatar.png"alt="Avatar"width="120"height="120"loading="lazy"></div>
+    
     <h1 id="profile-name"></h1>
     <div class="email" id="profile-email"></div>
     <div class="underline" id="underline"></div>
@@ -142,7 +144,7 @@
     <div class="credit">Created by <a id="credit-link" href="#"></a></div>
   </div>
   <audio id="audio" hidden></audio>
-  
+  <script defer src="script.js"></script>
   <script defer src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
   <script defer>
@@ -224,12 +226,10 @@
       document.getElementById('credit-link').href = config.credit.url;
       document.getElementById('underline').style.background = config.mainColor;
       const linksContainer = document.getElementById('links-container');
-      config.links.forEach((link,i)=>{
-        const a=document.createElement('a'); a.href=link.url; a.className='card'; a.style.setProperty('--i',i+1); a.target='_blank'; a.rel='noopener noreferrer';
-        const isImg = /\.(?:png|jpe?g|avif|gif)$/i.test(link.icon);
-        a.innerHTML=`<div class="icon">${isImg?`<img src="${link.icon}" alt="${link.title}" class="card-image" loading="lazy">`:`<i class="${link.icon}"></i>`}</div><div class="content"><div class="title">${link.title}${link.badge?`<span class="badge">${link.badge}</span>`:''}</div><div class="subtitle">${link.subtitle}</div></div>`;
-        linksContainer.appendChild(a);
-      })
+config.links.forEach((link, i) => {
+  linksContainer.innerHTML += `<a href="${link.url}" class="card" style="--i:${i + 1}" target="_blank" rel="noopener noreferrer"><div class="icon">${/\.(?:png|jpe?g|avif|gif)$/i.test(link.icon) ? `<img src="${link.icon}" alt="${link.title}" class="card-image" width="50" height="50" loading="lazy">` : `<i class="${link.icon}"></i>`}</div><div class="content"><div class="title">${link.title}${link.badge ? `<span class="badge">${link.badge}</span>` : ''}</div><div class="subtitle">${link.subtitle}</div></div></a>`;
+});
+      
       const soc=document.getElementById('socials-container');
       config.socials.forEach(s=>{ const a=document.createElement('a'); a.href=s.url; a.target='_blank'; a.rel='noopener noreferrer'; a.innerHTML=`<i class="${s.icon}"></i>`; soc.appendChild(a); });
       config.tracks.forEach(t=>{ const o=document.createElement('option'); o.value=t.src; o.textContent=t.name; select.appendChild(o); });
