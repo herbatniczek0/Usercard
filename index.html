@@ -102,27 +102,11 @@
   to   { transform: scale(1);   opacity: 1; }
 }
 
-body.glitch-mode {
-  filter: hue-rotate(90deg) contrast(1.2) brightness(1.1);
-  transition: filter 0.5s ease;
-  animation: glitch 1s infinite;
-}
-
-@keyframes glitch {
-  0% { clip-path: inset(0 0 2% 0); }
-  20% { clip-path: inset(2% 0 10% 0); }
-  40% { clip-path: inset(10% 0 5% 0); }
-  60% { clip-path: inset(5% 0 15% 0); }
-  80% { clip-path: inset(15% 0 3% 0); }
-  100% { clip-path: inset(0 0 2% 0); }
-}
-
   </style>
 </head>
 <body>
   <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#6b21a8">
-  <button id="toggle-glitch" aria-label="Przełącz tryb neon/glitch">🪩</button>
+<meta name="theme-color" content="#6b21a">
 <div id="easter-egg">
   <div id="egg-content">🎉 Poziom tajny odblokowany! 🎉</div>
 </div>
@@ -173,7 +157,7 @@ body.glitch-mode {
           { icon: 'img/abt0kqM.png', title: 'Twitch', badge: 'Herbatniczek0', subtitle: 'Mój Twitch', url: 'https://www.twitch.tv/herbatniczek0' },
           { icon: 'img/kfjxTEC.png', title: 'Spotify',  subtitle: 'Mój profil na spotify', url: 'https://open.spotify.com/user/313kut3bdmj7mlaneks7xrfyqxqe?si=306a85bc68e840fe' },
           { icon: 'img/EOKgDgT.png', title: 'MajesticRP', subtitle: 'Serwer na którym gram aktualnie', url: 'https://discord.gg/gta5majestic' },
-          { icon: 'img/sryoNo2.png', title: 'Crystal Dynasty', badge: 'Aktualna Rodzina', subtitle: 'Aktualna rodzina w której latam Postać #2 ', url: 'https://discord.gg/GtPuJusXu4' },
+          { icon: 'img/sryoNo2.png', title: 'Crystal Dynasty', badge: 'Aktualna Rodzina', subtitle: 'Aktualna rodzina w której latam Postać #2 ', url: 'https://discord.gg/yWj2RWhFC5' },
           { icon: 'img/7f45ce6a72c4d54899f829a006b59c0c.png', title: 'OnelifeRP', subtitle: 'Serwer na którym gram aktualnie na fivem', url: 'https://discord.gg/GtPuJusXu4' },
           { icon: 'img/cdf4474a5b2d06469dfa06bc70c85d10.png', title: 'Hantle w chmurach', subtitle: 'Właściciel Firmy na serwerze OneLifeRP', url: 'https://discord.gg/tv5sEgr57V' },
           { icon: 'img/72xWiS9.png', title: 'Własny profil',badge: 'Tymczasowo OFF', subtitle: 'Chcesz mieć własną strone? Napisz do mnie na PV to się dogadamy', url: 'Link do profilu' },
@@ -200,17 +184,6 @@ body.glitch-mode {
         shuffleBtn.style.opacity = isShuffle ? '1' : '0.5';
         audio.src = select.value;
       }
-const btnGlitch = document.getElementById('toggle-glitch');
-btnGlitch.addEventListener('click', () => {
-  document.body.classList.toggle('glitch-mode');
-  // zapamiętaj w localStorage
-  localStorage.setItem('glitch', document.body.classList.contains('glitch-mode'));
-});
-// przy starcie
-if (localStorage.getItem('glitch') === 'true') {
-  document.body.classList.add('glitch-mode');
-}
-
       const audio = document.getElementById('audio');
       const select = document.getElementById('track-select');
       const progressBar = document.getElementById('progress-bar');
@@ -261,7 +234,11 @@ if (localStorage.getItem('glitch') === 'true') {
       config.socials.forEach(s=>{ const a=document.createElement('a'); a.href=s.url; a.target='_blank'; a.rel='noopener noreferrer'; a.innerHTML=`<i class="${s.icon}"></i>`; soc.appendChild(a); });
       config.tracks.forEach(t=>{ const o=document.createElement('option'); o.value=t.src; o.textContent=t.name; select.appendChild(o); });
       loadState();
-      tsParticles.load('tsparticles',{fpsLimit:60,particles:{number:{value:120},color:{value:config.mainColor},shape:{type:'circle'},opacity:{value:0.7},size:{value:3},links:{enable:true,distance:340,color:config.mainColor,opacity:0.2,width:1.5},move:{enable:true,speed:1.2}},interactivity:{events:{onHover:{enable:true,mode:'repulse'},onClick:{enable:true,mode:'push'}},modes:{repulse:{distance:100},push:{quantity:4}}},detectRetina:true});
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); 
+      const particleCount = isMobile ? 50 : 120; 
+      const fps = isMobile ? 60 : 120;  
+      tsParticles.load('tsparticles',{fpsLimit:fps,particles:{number:{value:particleCount},color:{value:config.mainColor},shape:{type:'circle'},opacity:{value:0.7},size:{value:3},links:{enable:true,distance:340,color:config.mainColor,opacity:0.2,width:1.5},move:{enable:true,speed:1.2}},interactivity:{events:{onHover:{enable:true,mode:'repulse'},onClick:{enable:true,mode:'push'}},modes:{repulse:{distance:100},push:{quantity:4}}},detectRetina:true});
+
       window.addEventListener('load',()=>document.getElementById('preloader').style.display='none');
     });
     const titles=["‏‎","H","He","Her","Herb","Herba","Herbat","Herbatn","Herbatni","Herbatnic","Herbatnicz","Herbatnicze","Herbatniczek","Herbatniczek -" ,"Herbatniczek - I" ,"Herbatniczek - In" ,"Herbatniczek - Inf" ,"Herbatniczek - Info", "Herbatniczek - Inf" ,"Herbatniczek - In" ,"Herbatniczek - I" ,"Herbatniczek -" ,"Herbatniczek", "Herbatnicze", "Herbatnicz", "Herbatnic", "Herbatni", "Herbatn", "Herbat", "Herba", "Herb", "Her", "He", "H", "‏‎" ];
@@ -343,11 +320,6 @@ setInterval(showRandomQuote, 2500); // Zmienia cytat co 20 sekund
     }
   });
 })();
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then(() => console.log('PWA SW zarejestrowany'))
-      .catch(err => console.error('Błąd rejestracji SW:', err));
-  }
 </script>
 </body>
 </html>
