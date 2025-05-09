@@ -2,8 +2,19 @@
 <html lang="pl" data-theme="dark">
 <head>
   <meta charset="UTF-8">
+
+  <!-- Preconnect Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Preload lokalnych plików fontów (wrzuć je na serwer, np. /fonts/…) -->
+  <link rel="preload" as="font" href="/fonts/SpaceGrotesk-Regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/fonts/SpaceGrotesk-Bold.woff2" type="font/woff2" crossorigin>
+
+  <!-- Preload ciężkiego skryptu tsParticles -->
+  <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js">
+
+  <!-- Google Fonts CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 
   <meta name="description" content="Poznaj oficjalny profil użytkownika – Herbatniczek">
@@ -16,6 +27,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Herbatniczek</title>
   <link rel="icon" type="image/png" href="img/avatar.png" sizes="16x16">
+
   <style>
     :root { --bg: #000; --text: #fff; --card-bg: rgba(255,255,255,0.05); --main-color: #6b21a8; --transition: 0.3s ease; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -62,7 +74,7 @@
     html::-webkit-scrollbar-track { background: var(--bg); }
     html::-webkit-scrollbar-thumb { background: var(--main-color); border-radius: 4px; border: 2px solid var(--bg); transition: background 0.3s ease, transform 0.3s ease; }
     html::-webkit-scrollbar-thumb:hover { background: #8543c7; transform: scale(1.1); }
-   #preloader { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease; }
+    #preloader { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease; }
     #preloader.hidden { opacity: 0; visibility: hidden; }
     .spinner { width: 50px; height: 50px; border: 5px solid #444; border-top: 5px solid var(--main-color); border-radius: 50%; animation: spin 1s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -79,7 +91,7 @@
 
   <div class="wrapper" id="main-wrapper">
     <div class="avatar">
-      <img id="avatar" src="img/iLou6nj.png" alt="Avatar" loading="lazy">
+      <img id="avatar" src="img/iLou6nj.png" alt="Avatar" loading="lazy" width="120" height="120">
     </div>
     <h1 id="profile-name"></h1>
     <div class="email" id="profile-email"></div>
@@ -123,9 +135,17 @@
 
       const linksContainer = document.getElementById('links-container');
       config.links.forEach((link, i) => {
-        const card = `<a href="${link.url}" class="card" style="--i:${i+1}" target="_blank" rel="noopener noreferrer">` +
-                     `<div class="icon">${/\.(?:png|jpe?g|avif|gif)$/i.test(link.icon) ? `<img src="${link.icon}" alt="${link.title}" class="card-image" loading="lazy">` : `<i class="${link.icon}"></i>`}</div>` +
-                     `<div class="content"><div class="title">${link.title}${link.badge ? `<span class="badge">${link.badge}</span>` : ''}</div><div class="subtitle">${link.subtitle}</div></div></a>`;
+        const card = `<a href="${link.url}" class="card" style="--i:${i+1}" target="_blank" rel="noopener noreferrer">
+                        <div class="icon">${
+                          /\.(?:png|jpe?g|avif|gif)$/i.test(link.icon)
+                          ? `<img src="${link.icon}" alt="${link.title}" class="card-image" loading="lazy" width="24" height="24">`
+                          : `<i class="${link.icon}"></i>`
+                        }</div>
+                        <div class="content">
+                          <div class="title">${link.title}${link.badge ? `<span class="badge">${link.badge}</span>` : ''}</div>
+                          <div class="subtitle">${link.subtitle}</div>
+                        </div>
+                      </a>`;
         linksContainer.innerHTML += card;
       });
 
@@ -141,8 +161,20 @@
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       tsParticles.load('tsparticles', {
         fpsLimit: isMobile ? 60 : 1000,
-        particles: { number: { value: isMobile ? 50 : 100 }, color: { value: config.mainColor }, shape: { type: 'circle' }, opacity: { value: 0.7 }, size: { value: 3 }, links: { enable: true, distance: 340, color: config.mainColor, opacity: 0.2, width: 1.5 }, move: { enable: true, speed: 1.2 } },
-        interactivity: { events: { onHover: { enable: true, mode: 'repulse' }, onClick: { enable: true, mode: 'push' } }, modes: { repulse: { distance: 100 }, push: { quantity: 4 } } }, detectRetina: true
+        particles: {
+          number: { value: isMobile ? 30 : 100 },
+          color: { value: config.mainColor },
+          shape: { type: 'circle' },
+          opacity: { value: 0.7 },
+          size: { value: 3 },
+          links: { enable: true, distance: 340, color: config.mainColor, opacity: 0.2, width: 1.5 },
+          move: { enable: true, speed: 1.2 }
+        },
+        interactivity: {
+          events: { onHover: { enable: true, mode: 'repulse' }, onClick: { enable: true, mode: 'push' } },
+          modes: { repulse: { distance: 100 }, push: { quantity: 4 } }
+        },
+        detectRetina: true
       });
 
       window.addEventListener('load', () => {
@@ -151,20 +183,21 @@
       });
 
       // Dynamic title animation
-      const titles=["‏‎","H","He","Her","Herb","Herba","Herbat","Herbatn","Herbatni","Herbatnic","Herbatnicz","Herbatnicze","Herbatniczek","Herbatniczek -" ,"Herbatniczek - I" ,"Herbatniczek - In" ,"Herbatniczek - Inf" ,"Herbatniczek - Info", "Herbatniczek - Inf" ,"Herbatniczek - In" ,"Herbatniczek - I" ,"Herbatniczek -" ,"Herbatniczek", "Herbatnicze", "Herbatnicz", "Herbatnic", "Herbatni", "Herbatn", "Herbat", "Herba", "Herb", "Her", "He", "H", "‏‎" ];
+      const titles = ["‏‎","H","He","Her","Herb","Herba","Herbat","Herbatn","Herbatni","Herbatnic","Herbatnicz","Herbatnicze","Herbatniczek","Herbatniczek -","Herbatniczek - I","Herbatniczek - In","Herbatniczek - Inf","Herbatniczek - Info","Herbatniczek - Inf","Herbatniczek - In","Herbatniczek - I","Herbatniczek -","Herbatniczek","Herbatnicze","Herbatnicz","Herbatnic","Herbatni","Herbatn","Herbat","Herba","Herb","Her","He","H","‏‎"];
       let idx = 0;
-      setInterval(() => { document.title = titles[idx]; idx = (idx + 1) % titles.length; }, 400);
-
-      // Random quotes (placeholder)
-      const quotes = [""/* Dodaj tutaj cytaty */];
-      const quoteEl = document.getElementById('quote');
-      function showRandomQuote() { quoteEl.textContent = quotes[Math.floor(Math.random()*quotes.length)]; }
-      showRandomQuote(); setInterval(showRandomQuote, 20000);
+      setInterval(() => {
+        document.title = titles[idx];
+        idx = (idx + 1) % titles.length;
+      }, 400);
 
       // Clock update
       (function updateClock() {
         const now = new Date();
-        const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Europe/Warsaw' };
+        const opts = {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+          hour: '2-digit', minute: '2-digit', second: '2-digit',
+          hour12: false, timeZone: 'Europe/Warsaw'
+        };
         document.getElementById('clock').textContent = now.toLocaleString('pl-PL', opts);
         setTimeout(updateClock, 1000);
       })();
