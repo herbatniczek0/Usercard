@@ -7,98 +7,104 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Preload lokalnych plików fontów (wrzuć je na serwer, np. /fonts/…) -->
+  <!-- Preload lokalnych plików fontów (wrzuć je na swój serwer, np. /fonts/) -->
   <link rel="preload" as="font" href="/fonts/SpaceGrotesk-Regular.woff2" type="font/woff2" crossorigin>
-  <link rel="preload" as="font" href="/fonts/SpaceGrotesk-Bold.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/fonts/SpaceGrotesk-Bold.woff2"   type="font/woff2" crossorigin>
 
-  <!-- Preload ciężkiego skryptu tsParticles -->
+  <!-- Preload tsParticles -->
   <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js">
 
   <!-- Google Fonts CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 
   <meta name="description" content="Poznaj oficjalny profil użytkownika – Herbatniczek">
-  <meta property="og:title" content="👤 Profil użytkownika – Herbatniczek">
+  <meta property="og:title"       content="👤 Profil użytkownika – Herbatniczek">
   <meta property="og:description" content="Wszystkie sociale itp.">
-  <meta property="og:image" content="img/avatar.webp">
-  <meta property="og:url" content="https://herbatniczek.online/">
-  <meta property="og:type" content="profile">
+  <meta property="og:image"       content="img/avatar.png">
+  <meta property="og:url"         content="https://herbatniczek.online/">
+  <meta property="og:type"        content="profile">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport"            content="width=device-width, initial-scale=1.0">
+
   <title>Herbatniczek</title>
-  <link rel="icon" type="image/png" href="img/awatar.webp" sizes="16x16">
+  <link rel="icon" type="image/png" href="img/avatar.png" sizes="16x16">
 
   <style>
+    /* —————— TWÓJ ORYGINALNY CSS BEZ ZMIAN —————— */
     :root { --bg: #000; --text: #fff; --card-bg: rgba(255,255,255,0.05); --main-color: #6b21a8; --transition: 0.3s ease; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; transition: background var(--transition), color var(--transition); }
-    a { text-decoration: none; color: inherit; }
-    #tsparticles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-    .wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; opacity: 0; animation: fadeIn 1s forwards; }
-    .avatar { width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 4px solid var(--main-color); margin-bottom: 16px; }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; }
-    h1#profile-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; background: linear-gradient(270deg, #621e99, #9834f5, #621e99); background-size: 600% 600%; background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 6s linear infinite; }
-    @keyframes fadeIn { to { opacity: 1; } }
-    @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-    .email { font-size: 14px; opacity: 0.8; margin-bottom: 4px; }
-    .underline { width: 60px; height: 3px; background: var(--main-color); border-radius: 2px; margin: 12px 0 24px; }
-    .links { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 16px; }
-    .card { background: var(--card-bg); backdrop-filter: blur(4px); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; border: 1px solid transparent; transition: transform .2s, box-shadow .2s, border .2s; opacity: 0; animation: fadeIn 0.5s forwards; }
-    .card:nth-child(n) { animation-delay: calc(0.2s * var(--i)); }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 0 20px var(--main-color); border-color: var(--main-color); }
-    .icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: var(--main-color); transition: transform var(--transition); }
-    .icon:hover { transform: translate(4px, -4px) scale(1.1) rotate(5deg); }
-    .card-image { width: 24px; height: 24px; object-fit: contain; }
-    .content { flex: 1; }
-    .title { font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 8px; }
-    .badge { background: var(--main-color); color: #fff; font-size: 12px; padding: 2px 6px; border-radius: 8px; }
-    .subtitle { font-size: 13px; opacity: 0.8; margin-top: 4px; color: #ddd; }
-    .socials { display: flex; gap: 16px; margin: 32px 0 12px; }
-    .socials a { font-size: 20px; opacity: 0.8; transition: opacity .2s; }
-    .socials a:hover { opacity: 1; }
-    .credit { font-size: 13px; opacity: 0.8; margin-top: 24px; }
-    .credit a { color: var(--main-color); font-weight: 600; }
-    @media (max-width: 768px) {
-      .wrapper { padding: 20px 10px; }
-      .avatar { width: 100px; height: 100px; border: 3px solid var(--main-color); }
-      h1#profile-name { font-size: 24px; }
-      .links { max-width: 100%; gap: 12px; }
-      .card { padding: 12px 16px; }
-      .socials { gap: 12px; font-size: 18px; }
+    html, body { width:100%; height:100%; font-family:'Space Grotesk',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; transition:background var(--transition), color var(--transition); }
+    a { text-decoration:none; color:inherit; }
+    #tsparticles { position:absolute; top:0; left:0; width:100%; height:100%; }
+    .wrapper { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; padding:40px 20px; opacity:0; animation:fadeIn 1s forwards; }
+    .avatar { width:120px; height:120px; border-radius:50%; overflow:hidden; border:4px solid var(--main-color); margin-bottom:16px; }
+    .avatar img { width:100%; height:100%; object-fit:cover; }
+    h1#profile-name { font-size:32px; font-weight:700; margin-bottom:8px; background:linear-gradient(270deg,#621e99,#9834f5,#621e99); background-size:600% 600%; background-clip:text; -webkit-text-fill-color:transparent; animation:gradientMove 6s linear infinite; }
+    @keyframes fadeIn { to { opacity:1; } }
+    @keyframes gradientMove { 0% { background-position:0% 50%; } 50% { background-position:100% 50%; } 100% { background-position:0% 50%; } }
+    .email { font-size:14px; opacity:0.8; margin-bottom:4px; }
+    .underline { width:60px; height:3px; background:var(--main-color); border-radius:2px; margin:12px 0 24px; }
+    .links { width:100%; max-width:480px; display:flex; flex-direction:column; gap:16px; }
+    .card { background:var(--card-bg); backdrop-filter:blur(4px); border-radius:12px; padding:16px 20px; display:flex; align-items:center; gap:16px; border:1px solid transparent; transition:transform .2s, box-shadow .2s, border .2s; opacity:0; animation:fadeIn 0.5s forwards; }
+    .card:nth-child(n) { animation-delay:calc(0.2s * var(--i)); }
+    .card:hover { transform:translateY(-3px); box-shadow:0 0 20px var(--main-color); border-color:var(--main-color); }
+    .icon { width:36px; height:36px; display:flex; align-items:center; justify-content:center; color:var(--main-color); transition:transform var(--transition); }
+    .icon:hover { transform:translate(4px,-4px) scale(1.1) rotate(5deg); }
+    .card-image { width:24px; height:24px; object-fit:contain; }
+    .content { flex:1; }
+    .title { font-weight:600; font-size:16px; display:flex; align-items:center; gap:8px; }
+    .badge { background:var(--main-color); color:#fff; font-size:12px; padding:2px 6px; border-radius:8px; }
+    .subtitle { font-size:13px; opacity:0.8; margin-top:4px; color:#ddd; }
+    .socials { display:flex; gap:16px; margin:32px 0 12px; }
+    .socials a { font-size:20px; opacity:0.8; transition:opacity .2s; }
+    .socials a:hover { opacity:1; }
+    .credit { font-size:13px; opacity:0.8; margin-top:24px; }
+    .credit a { color:var(--main-color); font-weight:600; }
+    @media (max-width:768px) {
+      .wrapper { padding:20px 10px; }
+      .avatar { width:100px; height:100px; border:3px solid var(--main-color); }
+      h1#profile-name { font-size:24px; }
+      .links { max-width:100%; gap:12px; }
+      .card { padding:12px 16px; }
+      .socials { gap:12px; font-size:18px; }
     }
-    #clock { position: fixed; bottom: 20px; right: 20px; background: var(--card-bg); color: var(--text); padding: 8px 12px; border-radius: 8px; font-size: 14px; opacity: 0.8; backdrop-filter: blur(4px); pointer-events: none; z-index: 1000; }
-    #scroll-progress { position: fixed; top: 0; left: 0; height: 4px; width: 0; background: var(--main-color); z-index: 1000; transition: width 0.1s ease-out; }
-    body { overflow-y: scroll; }
-    html { scrollbar-width: thin; scrollbar-color: var(--main-color) var(--bg); }
-    html::-webkit-scrollbar { width: 8px; background: transparent; }
-    html::-webkit-scrollbar-track { background: var(--bg); }
-    html::-webkit-scrollbar-thumb { background: var(--main-color); border-radius: 4px; border: 2px solid var(--bg); transition: background 0.3s ease, transform 0.3s ease; }
-    html::-webkit-scrollbar-thumb:hover { background: #8543c7; transform: scale(1.1); }
-    #preloader { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease; }
-    #preloader.hidden { opacity: 0; visibility: hidden; }
-    .spinner { width: 50px; height: 50px; border: 5px solid #444; border-top: 5px solid var(--main-color); border-radius: 50%; animation: spin 1s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    #clock { position:fixed; bottom:20px; right:20px; background:var(--card-bg); color:var(--text); padding:8px 12px; border-radius:8px; font-size:14px; opacity:0.8; backdrop-filter:blur(4px); pointer-events:none; z-index:1000; }
+    #scroll-progress { position:fixed; top:0; left:0; height:4px; width:0; background:var(--main-color); z-index:1000; transition:width .1s ease-out; }
+    body { overflow-y:scroll; }
+    html { scrollbar-width:thin; scrollbar-color:var(--main-color) var(--bg); }
+    html::-webkit-scrollbar { width:8px; background:transparent; }
+    html::-webkit-scrollbar-track { background:var(--bg); }
+    html::-webkit-scrollbar-thumb { background:var(--main-color); border-radius:4px; border:2px solid var(--bg); transition:background .3s ease, transform .3s ease; }
+    html::-webkit-scrollbar-thumb:hover { background:#8543c7; transform:scale(1.1); }
+    #preloader { position:fixed; inset:0; background:rgba(0,0,0,0.85); display:flex; justify-content:center; align-items:center; z-index:9999; transition:opacity .5s ease, visibility .5s ease; }
+    #preloader.hidden { opacity:0; visibility:hidden; }
+    .spinner { width:50px; height:50px; border:5px solid #444; border-top:5px solid var(--main-color); border-radius:50%; animation:spin 1s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
   </style>
 </head>
 <body>
-  <div id="preloader">
-    <div class="spinner"></div>
-  </div>
+  <div id="preloader"><div class="spinner"></div></div>
   <div id="scroll-progress"></div>
   <div id="clock" aria-live="polite"></div>
-  <div id="quote" style="margin-top: 20px; font-size: 14px; opacity: 0.7; text-align: center;"></div>
+  <div id="quote" style="margin-top:20px;font-size:14px;opacity:.7;text-align:center;"></div>
   <div id="tsparticles"></div>
 
   <div class="wrapper" id="main-wrapper">
     <div class="avatar">
-      <img id="avatar" src="img/iLou6nj.webp" alt="Avatar" loading="lazy" width="120" height="120">
+      <picture>
+        <source srcset="img/iLou6nj.webp" type="image/webp">
+        <img id="avatar" src="img/iLou6nj.png" alt="Avatar"
+             loading="lazy" width="120" height="120">
+      </picture>
     </div>
     <h1 id="profile-name"></h1>
     <div class="email" id="profile-email"></div>
     <div class="underline" id="underline"></div>
     <div class="links" id="links-container"></div>
     <div class="socials" id="socials-container"></div>
-    <div class="credit">Created by <a id="credit-link" href="https://herbatniczek.online/"></a></div>
+    <div class="credit">
+      Created by <a id="credit-link" href="https://herbatniczek.online/"></a>
+    </div>
   </div>
 
   <script defer src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -107,57 +113,74 @@
     document.addEventListener('DOMContentLoaded', function() {
       const config = {
         mainColor: '#6b21a8',
-        avatarSrc: 'img/iLou6nj.webp',
+        avatarSrc: 'img/iLou6nj.png',
         name: 'Herbatniczek',
         email: '12herbatniczek34@gmail.com',
         links: [
-          { icon: 'img/72xWiS9.webp', title: 'Discord', badge: 'Profil', subtitle: 'Mój discord profil', url: 'https://discord.com/users/1138522840174436473' },
-          { icon: 'img/abt0kqM.webp', title: 'Twitch', badge: 'Herbatniczek0', subtitle: 'Mój Twitch', url: 'https://www.twitch.tv/herbatniczek0' },
-          { icon: 'img/kfjxTEC.webp', title: 'Spotify', subtitle: 'Mój profil na spotify', url: 'https://open.spotify.com/user/313kut3bdmj7mlaneks7xrfyqxqe?si=306a85bc68e840fe' },
-          { icon: 'img/EOKgDgT.webp', title: 'MajesticRP', subtitle: 'Serwer na którym gram aktualnie', url: 'https://discord.gg/gta5majestic' },
-          { icon: 'img/sryoNo2.webp', title: 'Crystal Dynasty', badge: 'Aktualna Rodzina', subtitle: 'Aktualna rodzina w której latam Postać #2 ', url: 'https://discord.gg/yWj2RWhFC5' },
-          { icon: 'img/7f45ce6a72c4d54899f829a006b59c0c.webp', title: 'OnelifeRP', subtitle: 'Serwer na którym gram aktualnie na fivem', url: 'https://discord.gg/GtPuJusXu4' },
-          { icon: 'img/cdf4474a5b2d06469dfa06bc70c85d10.webp', title: 'Hantle w chmurach', subtitle: 'Właściciel Firmy na serwerze OneLifeRP', url: 'https://discord.gg/tv5sEgr57V' },
-          { icon: 'img/72xWiS9.webp', title: 'Własny profil', badge: 'Tymczasowo OFF', subtitle: 'Chcesz mieć własną strone? Napisz do mnie na PV to się dogadamy', url: 'https://herbatniczek.online/' }
+          { icon:'img/72xWiS9.png',   title:'Discord',          badge:'Profil',          subtitle:'Mój discord profil',            url:'https://discord.com/users/1138522840174436473' },
+          { icon:'img/abt0kqM.png',   title:'Twitch',          badge:'Herbatniczek0',  subtitle:'Mój Twitch',                    url:'https://www.twitch.tv/herbatniczek0' },
+          { icon:'img/kfjxTEC.png',   title:'Spotify',         subtitle:'Mój profil na spotify',          url:'https://open.spotify.com/user/313kut3bdmj7mlaneks7xrfyqxqe?si=306a85bc68e840fe' },
+          { icon:'img/EOKgDgT.png',   title:'MajesticRP',      subtitle:'Serwer, na którym gram aktualnie',url:'https://discord.gg/gta5majestic' },
+          { icon:'img/sryoNo2.png',   title:'Crystal Dynasty', badge:'Aktualna Rodzina',subtitle:'Aktualna rodzina',              url:'https://discord.gg/yWj2RWhFC5' },
+          { icon:'img/7f45ce6a72c4d54899f829a006b59c0c.png', title:'OnelifeRP',subtitle:'Serwer, na którym gram aktualnie na FiveM', url:'https://discord.gg/GtPuJusXu4' },
+          { icon:'img/cdf4474a5b2d06469dfa06bc70c85d10.png', title:'Hantle w chmurach',subtitle:'Właściciel firmy na OneLifeRP',url:'https://discord.gg/tv5sEgr57V' },
+          { icon:'img/72xWiS9.png',   title:'Własny profil',   badge:'Tymczasowo OFF', subtitle:'Chcesz własną stronę? Napisz na PV',url:'https://herbatniczek.online/' }
         ],
-        socials: [ { icon: 'fab fa-youtube', url: 'https://herbatniczek.online/' } ],
-        credit: { text: 'Herbatniczek', url: 'https://herbatniczek.online/' }
+        socials: [ { icon:'fab fa-youtube', url:'https://herbatniczek.online/' } ],
+        credit:  { text:'Herbatniczek',     url:'https://herbatniczek.online/' }
       };
 
-      // Apply config
+      // Kolory i teksty
       document.documentElement.style.setProperty('--main-color', config.mainColor);
-      document.getElementById('avatar').src = config.avatarSrc;
-      document.getElementById('profile-name').textContent = config.name;
-      document.getElementById('profile-email').innerHTML = `Mój Gmail: <a href="mailto:${config.email}">${config.email}</a>`;
-      document.getElementById('credit-link').textContent = config.credit.text;
-      document.getElementById('credit-link').href = config.credit.url;
+      document.getElementById('profile-name').textContent   = config.name;
+      document.getElementById('profile-email').innerHTML    = `Mój Gmail: <a href="mailto:${config.email}">${config.email}</a>`;
+      document.getElementById('credit-link').textContent    = config.credit.text;
+      document.getElementById('credit-link').href           = config.credit.url;
       document.getElementById('underline').style.background = config.mainColor;
+      document.querySelector('#avatar').src                  = config.avatarSrc;
 
+      // Generowanie linków
       const linksContainer = document.getElementById('links-container');
       config.links.forEach((link, i) => {
-        const card = `<a href="${link.url}" class="card" style="--i:${i+1}" target="_blank" rel="noopener noreferrer">
-                        <div class="icon">${
-                          /\.(?:png|jpe?g|avif|webp|gif)$/i.test(link.icon)
-                          ? `<img src="${link.icon}" alt="${link.title}" class="card-image" loading="lazy" width="24" height="24">`
-                          : `<i class="${link.icon}"></i>`
-                        }</div>
-                        <div class="content">
-                          <div class="title">${link.title}${link.badge ? `<span class="badge">${link.badge}</span>` : ''}</div>
-                          <div class="subtitle">${link.subtitle}</div>
-                        </div>
-                      </a>`;
+        let iconHTML;
+        if (/\.(?:png|jpe?g)$/i.test(link.icon)) {
+          const webp = link.icon.replace(/\.(png|jpe?g)$/i, '.webp');
+          iconHTML = `
+            <picture>
+              <source srcset="${webp}" type="image/webp">
+              <img src="${link.icon}" alt="${link.title}"
+                   class="card-image" loading="lazy" width="24" height="24">
+            </picture>`;
+        } else {
+          iconHTML = `<i class="${link.icon}"></i>`;
+        }
+
+        const card = `
+          <a href="${link.url}" class="card" style="--i:${i+1}" target="_blank" rel="noopener noreferrer">
+            <div class="icon">${iconHTML}</div>
+            <div class="content">
+              <div class="title">
+                ${link.title}
+                ${link.badge ? `<span class="badge">${link.badge}</span>` : ''}
+              </div>
+              <div class="subtitle">${link.subtitle}</div>
+            </div>
+          </a>`;
         linksContainer.innerHTML += card;
       });
 
+      // Socials
       const socialsContainer = document.getElementById('socials-container');
       config.socials.forEach(s => {
         const a = document.createElement('a');
-        a.href = s.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        a.href = s.url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
         a.innerHTML = `<i class="${s.icon}"></i>`;
         socialsContainer.appendChild(a);
       });
 
-      // Initialize particles
+      // tsParticles
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       tsParticles.load('tsparticles', {
         fpsLimit: isMobile ? 60 : 1000,
@@ -182,15 +205,21 @@
         setTimeout(() => document.getElementById('preloader').remove(), 600);
       });
 
-      // Dynamic title animation
-      const titles = ["‏‎","H","He","Her","Herb","Herba","Herbat","Herbatn","Herbatni","Herbatnic","Herbatnicz","Herbatnicze","Herbatniczek","Herbatniczek -","Herbatniczek - I","Herbatniczek - In","Herbatniczek - Inf","Herbatniczek - Info","Herbatniczek - Inf","Herbatniczek - In","Herbatniczek - I","Herbatniczek -","Herbatniczek","Herbatnicze","Herbatnicz","Herbatnic","Herbatni","Herbatn","Herbat","Herba","Herb","Her","He","H","‏‎"];
+      // Animacja tytułu
+      const titles = ["","H","He","Her","Herb","Herba","Herbat","Herbatn","Herbatni","Herbatnic","Herbatnicz","Herbatnicze","Herbatniczek","Herbatniczek -","Herbatniczek - I","Herbatniczek - In","Herbatniczek - Inf","Herbatniczek - Info","Herbatniczek - Inf","Herbatniczek - In","Herbatniczek - I","Herbatniczek -","Herbatniczek","Herbatnicze","Herbatnicz","Herbatnic","Herbatni","Herbatn","Herbat","Herba","Herb","Her","He","H",""];
       let idx = 0;
       setInterval(() => {
         document.title = titles[idx];
         idx = (idx + 1) % titles.length;
       }, 400);
 
-      // Clock update
+      // Losowe cytaty (placeholder)
+//    const quotes = ["Twój cytat 1","Twój cytat 2"];
+//    const quoteEl = document.getElementById('quote');
+//    function showRandomQuote() { quoteEl.textContent = quotes[Math.floor(Math.random()*quotes.length)]; }
+//    showRandomQuote(); setInterval(showRandomQuote, 20000);
+
+      // Zegar
       (function updateClock() {
         const now = new Date();
         const opts = {
@@ -202,7 +231,7 @@
         setTimeout(updateClock, 1000);
       })();
 
-      // Scroll progress bar
+      // Pasek przewijania
       window.addEventListener('scroll', () => {
         const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
         document.getElementById('scroll-progress').style.width = pct + '%';
