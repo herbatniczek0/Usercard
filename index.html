@@ -89,7 +89,6 @@
     <div class="credit">Created by <a id="credit-link" href="https://herbatniczek.online/"></a></div>
   </div>
 
-  <script defer src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -140,8 +139,8 @@
       // Initialize particles
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       tsParticles.load('tsparticles', {
-        fpsLimit: isMobile ? 60 : 120,
-        particles: { number: { value: isMobile ? 50 : 120 }, color: { value: config.mainColor }, shape: { type: 'circle' }, opacity: { value: 0.7 }, size: { value: 3 }, links: { enable: true, distance: 340, color: config.mainColor, opacity: 0.2, width: 1.5 }, move: { enable: true, speed: 1.2 } },
+        fpsLimit: isMobile ? 60 : 1000,
+        particles: { number: { value: isMobile ? 50 : 100 }, color: { value: config.mainColor }, shape: { type: 'circle' }, opacity: { value: 0.7 }, size: { value: 3 }, links: { enable: true, distance: 340, color: config.mainColor, opacity: 0.2, width: 1.5 }, move: { enable: true, speed: 1.2 } },
         interactivity: { events: { onHover: { enable: true, mode: 'repulse' }, onClick: { enable: true, mode: 'push' } }, modes: { repulse: { distance: 100 }, push: { quantity: 4 } } }, detectRetina: true
       });
 
