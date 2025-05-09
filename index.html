@@ -2,26 +2,18 @@
 <html lang="pl" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-<meta name="description" content="Poznaj oficjalny profil użytkownika – Herbatniczek">
-
-<meta property="og:title" content="👤 Profil użytkownika – Herbatniczek">
-<meta property="og:description" content="Wszystkie sociale itp.">
-<meta property="og:image" content="img/avatar.png">
-<meta property="og:url" content="https://herbatniczek.online/">
-<meta property="og:type" content="profile">
-
+  <meta name="description" content="Poznaj oficjalny profil użytkownika – Herbatniczek">
+  <meta property="og:title" content="👤 Profil użytkownika – Herbatniczek">
+  <meta property="og:description" content="Wszystkie sociale itp.">
+  <meta property="og:image" content="img/avatar.png">
+  <meta property="og:url" content="https://herbatniczek.online/">
+  <meta property="og:type" content="profile">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>‏‎</title>
+  <title>Herbatniczek</title>
   <link rel="icon" type="image/png" href="img/avatar.png" sizes="16x16">
   <style>
-    :root {
-      --bg: #000000;
-      --text: #ffffff;
-      --card-bg: rgba(255,255,255,0.05);
-      --main-color: #6b21a8;
-      --transition: 0.3s ease;
-    }
+    :root { --bg: #000; --text: #fff; --card-bg: rgba(255,255,255,0.05); --main-color: #6b21a8; --transition: 0.3s ease; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; transition: background var(--transition), color var(--transition); }
     a { text-decoration: none; color: inherit; }
@@ -35,7 +27,7 @@
     .email { font-size: 14px; opacity: 0.8; margin-bottom: 4px; }
     .underline { width: 60px; height: 3px; background: var(--main-color); border-radius: 2px; margin: 12px 0 24px; }
     .links { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 16px; }
-    .card { background: var(--card-bg); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; border: 1px solid transparent; transition: transform .2s, box-shadow .2s, border .2s; opacity: 0; animation: fadeIn 0.5s forwards; }
+    .card { background: var(--card-bg); backdrop-filter: blur(4px); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; border: 1px solid transparent; transition: transform .2s, box-shadow .2s, border .2s; opacity: 0; animation: fadeIn 0.5s forwards; }
     .card:nth-child(n) { animation-delay: calc(0.2s * var(--i)); }
     .card:hover { transform: translateY(-3px); box-shadow: 0 0 20px var(--main-color); border-color: var(--main-color); }
     .icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: var(--main-color); transition: transform var(--transition); }
@@ -45,135 +37,59 @@
     .title { font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 8px; }
     .badge { background: var(--main-color); color: #fff; font-size: 12px; padding: 2px 6px; border-radius: 8px; }
     .subtitle { font-size: 13px; opacity: 0.8; margin-top: 4px; color: #ddd; }
-    .music-icon { position: absolute; top: 20px; right: 20px; font-size: 28px; cursor: pointer; z-index: 2; color: var(--text); }
-    .music-player { position: absolute; top: 60px; right: 20px; width: 300px; background: var(--card-bg); color: var(--text); border-radius: 12px; padding: 16px; display: none; flex-direction: column; gap: 12px; z-index: 2; }
-    .music-player .controls { display: flex; justify-content: center; gap: 12px; margin-bottom: 12px; }
-    .music-player .controls button { background: transparent; border: none; font-size: 24px; cursor: pointer; transition: transform var(--transition), color var(--transition); }
-    .music-player .controls button:hover { transform: translate(4px, -4px) scale(1.2) rotate(10deg); color: var(--main-color); }
-    .music-player label, .music-player select, .music-player input[type=range] { font-size: 14px; width: 100%; border: none; border-radius: 8px; padding: 6px; background: rgba(255,255,255,0.2); color: var(--text); }
     .socials { display: flex; gap: 16px; margin: 32px 0 12px; }
     .socials a { font-size: 20px; opacity: 0.8; transition: opacity .2s; }
     .socials a:hover { opacity: 1; }
     .credit { font-size: 13px; opacity: 0.8; margin-top: 24px; }
     .credit a { color: var(--main-color); font-weight: 600; }
-    progress { width: 100%; height: 8px; cursor: pointer; }
     @media (max-width: 768px) {
-    .wrapper {padding: 20px 10px;}
-    .avatar {width: 100px;height: 100px;border: 3px solid var(--main-color);}      
-    h1#profile-name {font-size: 24px;}
-    .links {max-width: 100%;gap: 12px;}
-    .card {padding: 12px 16px;}
-    .music-player {width: 90%;right: 5%;}
-    .music-icon {font-size: 24px;}
-    .socials {gap: 12px;font-size: 18px;} }
-    #clock {position: fixed;bottom: 20px;right: 20px;background: var(--card-bg);color: var(--text);padding: 8px 12px;border-radius: 8px;font-size: 14px;opacity: 0.8;backdrop-filter: blur(4px);-webkit-backdrop-filter: blur(4px);pointer-events: none;z-index: 1000;}
-    #scroll-progress {position: fixed;top: 0;left: 0;height: 4px;width: 0;background: var(--main-color);z-index: 1000;transition: width 0.1s ease-out;}
-    body {overflow-y: scroll;}
-    html {scrollbar-width: thin;scrollbar-color: var(--main-color) var(--bg);}
-    html::-webkit-scrollbar {width: 8px;background: transparent;}
-    html::-webkit-scrollbar-track {background: var(--bg);}
-    html::-webkit-scrollbar-thumb {background: var(--main-color);border-radius: 4px;border: 2px solid var(--bg);transition: background 0.3s ease, transform 0.3s ease;}
-    html::-webkit-scrollbar-thumb:hover {background: #8543c7;transform: scale(1.1);}
-    /* Easter Egg Konami Code */
-#easter-egg {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.9);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  z-index: 2000;
-  align-items: center;
-  justify-content: center;
-}
-#egg-content {
-  color: #fff;
-  font-size: 2rem;
-  padding: 20px 40px;
-  border: 3px solid var(--main-color);
-  border-radius: 12px;
-  text-align: center;
-  animation: pop-in 0.5s ease-out;
-}
-@keyframes pop-in {
-  from { transform: scale(0.5); opacity: 0; }
-  to   { transform: scale(1);   opacity: 1; }
-}
-#preloader {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85); /* półprzezroczyste, żeby widać lekko kontury strony */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-  visibility: visible;
-}
-#preloader.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid #444;
-  border-top: 5px solid var(--main-color);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-
+      .wrapper { padding: 20px 10px; }
+      .avatar { width: 100px; height: 100px; border: 3px solid var(--main-color); }
+      h1#profile-name { font-size: 24px; }
+      .links { max-width: 100%; gap: 12px; }
+      .card { padding: 12px 16px; }
+      .socials { gap: 12px; font-size: 18px; }
+    }
+    #clock { position: fixed; bottom: 20px; right: 20px; background: var(--card-bg); color: var(--text); padding: 8px 12px; border-radius: 8px; font-size: 14px; opacity: 0.8; backdrop-filter: blur(4px); pointer-events: none; z-index: 1000; }
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 4px; width: 0; background: var(--main-color); z-index: 1000; transition: width 0.1s ease-out; }
+    body { overflow-y: scroll; }
+    html { scrollbar-width: thin; scrollbar-color: var(--main-color) var(--bg); }
+    html::-webkit-scrollbar { width: 8px; background: transparent; }
+    html::-webkit-scrollbar-track { background: var(--bg); }
+    html::-webkit-scrollbar-thumb { background: var(--main-color); border-radius: 4px; border: 2px solid var(--bg); transition: background 0.3s ease, transform 0.3s ease; }
+    html::-webkit-scrollbar-thumb:hover { background: #8543c7; transform: scale(1.1); }
+   #preloader { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease; }
+    #preloader.hidden { opacity: 0; visibility: hidden; }
+    .spinner { width: 50px; height: 50px; border: 5px solid #444; border-top: 5px solid var(--main-color); border-radius: 50%; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
-<div id="preloader">
-  <div class="spinner"></div>
-</div>
-<meta name="theme-color" content="#6b21a">
-<div id="easter-egg">
-  <div id="egg-content">🎉 Poziom tajny odblokowany! 🎉</div>
-</div>
+  <div id="preloader">
+    <div class="spinner"></div>
+  </div>
+  <meta name="theme-color" content="#6b21a8">
+  </div>
   <div id="scroll-progress"></div>
-  <div id="clock" aria-live="polite" style="margin-bottom: 12px;"></div>
+  <div id="clock" aria-live="polite"></div>
   <div id="quote" style="margin-top: 20px; font-size: 14px; opacity: 0.7; text-align: center;"></div>
   <div id="tsparticles"></div>
-  <div class="music-icon" id="music-icon">💽</div>
-  <div class="music-player" id="music-player">
-    <div class="controls">
-      <button id="prev-btn" aria-label="Poprzedni utwór">⏮️</button>
-      <button id="play-pause-btn" aria-label="Odtwórz/Pauza">▶️</button>
-      <button id="next-btn" aria-label="Następny utwór">⏭️</button>
-      <button id="shuffle-btn" aria-label="Losuj kolejność">🔀</button>
-    </div>
-    <label for="track-select">Wybierz muzykę:</label>
-    <select id="track-select"></select>
-    <label for="time-display">Czas:</label>
-    <div id="time-display">0:00</div>
-    <label for="progress-bar">Postęp:</label>
-    <progress id="progress-bar" value="0" max="0"></progress>
-    <label for="volume-range">Głośność:</label>
-    <input type="range" id="volume-range" min="0" max="1" step="0.01" value="0.5">
-  </div>
+
   <div class="wrapper" id="main-wrapper">
     <div class="avatar">
-      <img id="avatar"src="iLou6nj.png"alt="Avatar"width="120"height="120"loading="lazy"></div>
-      <script defer src="script.js"></script>
+      <img id="avatar" src="img/iLou6nj.png" alt="Avatar" loading="lazy">
+    </div>
     <h1 id="profile-name"></h1>
     <div class="email" id="profile-email"></div>
     <div class="underline" id="underline"></div>
     <div class="links" id="links-container"></div>
     <div class="socials" id="socials-container"></div>
-    <div class="credit">Created by <a id="credit-link" href="https://herbatniczek.online/'"></a></div>
+    <div class="credit">Created by <a id="credit-link" href="https://herbatniczek.online/"></a></div>
   </div>
-  <audio id="audio" hidden></audio>
-  
+
   <script defer src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
-  <script defer>
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
       const config = {
         mainColor: '#6b21a8',
@@ -181,178 +97,82 @@
         name: 'Herbatniczek',
         email: '12herbatniczek34@gmail.com',
         links: [
-          { icon: 'img/72xWiS9.png', title: 'Discord', badge: 'Profil', subtitle: 'Mój discord profil', url: 'https://discord.com/users/1138522840174436473', },
+          { icon: 'img/72xWiS9.png', title: 'Discord', badge: 'Profil', subtitle: 'Mój discord profil', url: 'https://discord.com/users/1138522840174436473' },
           { icon: 'img/abt0kqM.png', title: 'Twitch', badge: 'Herbatniczek0', subtitle: 'Mój Twitch', url: 'https://www.twitch.tv/herbatniczek0' },
-          { icon: 'img/kfjxTEC.png', title: 'Spotify',  subtitle: 'Mój profil na spotify', url: 'https://open.spotify.com/user/313kut3bdmj7mlaneks7xrfyqxqe?si=306a85bc68e840fe' },
+          { icon: 'img/kfjxTEC.png', title: 'Spotify', subtitle: 'Mój profil na spotify', url: 'https://open.spotify.com/user/313kut3bdmj7mlaneks7xrfyqxqe?si=306a85bc68e840fe' },
           { icon: 'img/EOKgDgT.png', title: 'MajesticRP', subtitle: 'Serwer na którym gram aktualnie', url: 'https://discord.gg/gta5majestic' },
           { icon: 'img/sryoNo2.png', title: 'Crystal Dynasty', badge: 'Aktualna Rodzina', subtitle: 'Aktualna rodzina w której latam Postać #2 ', url: 'https://discord.gg/yWj2RWhFC5' },
           { icon: 'img/7f45ce6a72c4d54899f829a006b59c0c.png', title: 'OnelifeRP', subtitle: 'Serwer na którym gram aktualnie na fivem', url: 'https://discord.gg/GtPuJusXu4' },
           { icon: 'img/cdf4474a5b2d06469dfa06bc70c85d10.png', title: 'Hantle w chmurach', subtitle: 'Właściciel Firmy na serwerze OneLifeRP', url: 'https://discord.gg/tv5sEgr57V' },
-          { icon: 'img/72xWiS9.png', title: 'Własny profil',badge: 'Tymczasowo OFF', subtitle: 'Chcesz mieć własną strone? Napisz do mnie na PV to się dogadamy', url: 'https://herbatniczek.online/' },
+          { icon: 'img/72xWiS9.png', title: 'Własny profil', badge: 'Tymczasowo OFF', subtitle: 'Chcesz mieć własną strone? Napisz do mnie na PV to się dogadamy', url: 'https://herbatniczek.online/' }
         ],
         socials: [ { icon: 'fab fa-youtube', url: 'https://herbatniczek.online/' } ],
-        credit: { text: 'Herbatniczek', url: 'https://herbatniczek.online/' },
-      
-        tracks: [
-          { name: 'Brak piosenki', src: '' },
-          { name: 'MVP - purpless remix - purpless', src: 'music/MVP - purpless remix - purpless.mp3' },
-          { name: 'Bajorson, Dawid Obserwator, DJ Killer, David Tango - Bailando (Lose Control Remix)', src: 'music/Bajorson, Dawid Obserwator, DJ Killer, David Tango - Bailando (Lose Control Remix).mp3' },
-          { name: 'Bedoes & Lanek feat. Kosa, White 2115 - Wschód (MOORAH REMIX)', src: 'music/Bedoes & Lanek feat. Kosa, White 2115 - Wschód (MOORAH REMIX).mp3' },
-          { name: 'PRO8L3M - Ground Zero', src: 'music/PRO8L3M - Ground Zero.mp3' }
-        ]
+        credit: { text: 'Herbatniczek', url: 'https://herbatniczek.online/' }
       };
-      function saveState() {
-        localStorage.setItem('playerState', JSON.stringify({ track: select.value, volume: audio.volume, shuffle: isShuffle }));
-      }
-      function loadState() {
-        const st = JSON.parse(localStorage.getItem('playerState') || '{}');
-        if (st.track) select.value = st.track;
-        if (st.volume !== undefined) audio.volume = st.volume;
-        isShuffle = st.shuffle || false;
-        shuffleBtn.style.opacity = isShuffle ? '1' : '0.5';
-        audio.src = select.value;
-      }
-      const audio = document.getElementById('audio');
-      const select = document.getElementById('track-select');
-      const progressBar = document.getElementById('progress-bar');
-      const timeDisplay = document.getElementById('time-display');
-      const volumeRange = document.getElementById('volume-range');
-      const playPauseBtn = document.getElementById('play-pause-btn');
-      const prevBtn = document.getElementById('prev-btn');
-      const nextBtn = document.getElementById('next-btn');
-      const shuffleBtn = document.getElementById('shuffle-btn');
-      let isShuffle = false;
-      document.getElementById('music-icon').addEventListener('click', () => {
-        const mp = document.getElementById('music-player');
-        mp.style.display = mp.style.display === 'flex' ? 'none' : 'flex';
-      });
-      select.addEventListener('change', () => { audio.src = select.value; audio.load(); audio.play(); });
-      audio.addEventListener('loadedmetadata', () => progressBar.max = audio.duration);
-      audio.addEventListener('timeupdate', () => { progressBar.value = audio.currentTime; const m = Math.floor(audio.currentTime/60), s = Math.floor(audio.currentTime%60); timeDisplay.textContent = m+':'+(s<10?'0'+s:s); });
-      progressBar.addEventListener('click', e => { const pct=(e.offsetX/ e.target.clientWidth); audio.currentTime = pct*audio.duration; });
-      volumeRange.addEventListener('input', () => { audio.volume = volumeRange.value; saveState(); });
-      playPauseBtn.addEventListener('click', () => { if(audio.paused) audio.play(); else audio.pause(); });
-      audio.addEventListener('play', () => playPauseBtn.textContent='⏸️');
-      audio.addEventListener('pause', () => playPauseBtn.textContent='▶️');
-      prevBtn.addEventListener('click', () => changeTrack(-1));
-      nextBtn.addEventListener('click', () => changeTrack(1));
-      shuffleBtn.addEventListener('click', () => { isShuffle=!isShuffle; shuffleBtn.style.opacity = isShuffle?'1':'0.5'; saveState(); });
-      function changeTrack(dir) {
-        let idx = Array.from(select.options).findIndex(o=>o.value===audio.src);
-        if(isShuffle) idx = Math.floor(Math.random()*select.options.length);
-        else idx = (idx+dir+select.options.length)%select.options.length;
-        select.selectedIndex = idx; audio.src = select.value; audio.play(); saveState();
-      }
-      // Apply config & render
+
+      // Apply config
       document.documentElement.style.setProperty('--main-color', config.mainColor);
       document.getElementById('avatar').src = config.avatarSrc;
       document.getElementById('profile-name').textContent = config.name;
-      document.getElementById('profile-email').innerHTML = 'Mój Gmail: <a href="mailto:'+config.email+'">'+config.email+'</a>';
+      document.getElementById('profile-email').innerHTML = `Mój Gmail: <a href="mailto:${config.email}">${config.email}</a>`;
       document.getElementById('credit-link').textContent = config.credit.text;
       document.getElementById('credit-link').href = config.credit.url;
       document.getElementById('underline').style.background = config.mainColor;
+
       const linksContainer = document.getElementById('links-container');
-config.links.forEach((link, i) => {
-  linksContainer.innerHTML += `<a href="${link.url}" class="card" style="--i:${i + 1}" target="_blank" rel="noopener noreferrer"><div class="icon">${/\.(?:png|jpe?g|avif|gif)$/i.test(link.icon) ? `<img src="${link.icon}" alt="${link.title}" class="card-image" width="50" height="50" loading="lazy">` : `<i class="${link.icon}"></i>`}</div><div class="content"><div class="title">${link.title}${link.badge ? `<span class="badge">${link.badge}</span>` : ''}</div><div class="subtitle">${link.subtitle}</div></div></a>`;
-});
-      
-      const soc=document.getElementById('socials-container');
-      config.socials.forEach(s=>{ const a=document.createElement('a'); a.href=s.url; a.target='_blank'; a.rel='noopener noreferrer'; a.innerHTML=`<i class="${s.icon}"></i>`; soc.appendChild(a); });
-      config.tracks.forEach(t=>{ const o=document.createElement('option'); o.value=t.src; o.textContent=t.name; select.appendChild(o); });
-      loadState();
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); 
-      const particleCount = isMobile ? 50 : 120; 
-      const fps = isMobile ? 60 : 120;  
-      tsParticles.load('tsparticles',{fpsLimit:fps,particles:{number:{value:particleCount},color:{value:config.mainColor},shape:{type:'circle'},opacity:{value:0.7},size:{value:3},links:{enable:true,distance:340,color:config.mainColor,opacity:0.2,width:1.5},move:{enable:true,speed:1.2}},interactivity:{events:{onHover:{enable:true,mode:'repulse'},onClick:{enable:true,mode:'push'}},modes:{repulse:{distance:100},push:{quantity:4}}},detectRetina:true});
+      config.links.forEach((link, i) => {
+        const card = `<a href="${link.url}" class="card" style="--i:${i+1}" target="_blank" rel="noopener noreferrer">` +
+                     `<div class="icon">${/\.(?:png|jpe?g|avif|gif)$/i.test(link.icon) ? `<img src="${link.icon}" alt="${link.title}" class="card-image" loading="lazy">` : `<i class="${link.icon}"></i>`}</div>` +
+                     `<div class="content"><div class="title">${link.title}${link.badge ? `<span class="badge">${link.badge}</span>` : ''}</div><div class="subtitle">${link.subtitle}</div></div></a>`;
+        linksContainer.innerHTML += card;
+      });
 
-      window.addEventListener('load',()=>document.getElementById('preloader').style.display='none');
+      const socialsContainer = document.getElementById('socials-container');
+      config.socials.forEach(s => {
+        const a = document.createElement('a');
+        a.href = s.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        a.innerHTML = `<i class="${s.icon}"></i>`;
+        socialsContainer.appendChild(a);
+      });
+
+      // Initialize particles
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      tsParticles.load('tsparticles', {
+        fpsLimit: isMobile ? 60 : 120,
+        particles: { number: { value: isMobile ? 50 : 120 }, color: { value: config.mainColor }, shape: { type: 'circle' }, opacity: { value: 0.7 }, size: { value: 3 }, links: { enable: true, distance: 340, color: config.mainColor, opacity: 0.2, width: 1.5 }, move: { enable: true, speed: 1.2 } },
+        interactivity: { events: { onHover: { enable: true, mode: 'repulse' }, onClick: { enable: true, mode: 'push' } }, modes: { repulse: { distance: 100 }, push: { quantity: 4 } } }, detectRetina: true
+      });
+
+      window.addEventListener('load', () => {
+        document.getElementById('preloader').classList.add('hidden');
+        setTimeout(() => document.getElementById('preloader').remove(), 600);
+      });
+
+      // Dynamic title animation
+      const titles=["‏‎","H","He","Her","Herb","Herba","Herbat","Herbatn","Herbatni","Herbatnic","Herbatnicz","Herbatnicze","Herbatniczek","Herbatniczek -" ,"Herbatniczek - I" ,"Herbatniczek - In" ,"Herbatniczek - Inf" ,"Herbatniczek - Info", "Herbatniczek - Inf" ,"Herbatniczek - In" ,"Herbatniczek - I" ,"Herbatniczek -" ,"Herbatniczek", "Herbatnicze", "Herbatnicz", "Herbatnic", "Herbatni", "Herbatn", "Herbat", "Herba", "Herb", "Her", "He", "H", "‏‎" ];
+      let idx = 0;
+      setInterval(() => { document.title = titles[idx]; idx = (idx + 1) % titles.length; }, 400);
+
+      // Random quotes (placeholder)
+      const quotes = [""/* Dodaj tutaj cytaty */];
+      const quoteEl = document.getElementById('quote');
+      function showRandomQuote() { quoteEl.textContent = quotes[Math.floor(Math.random()*quotes.length)]; }
+      showRandomQuote(); setInterval(showRandomQuote, 20000);
+
+      // Clock update
+      (function updateClock() {
+        const now = new Date();
+        const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Europe/Warsaw' };
+        document.getElementById('clock').textContent = now.toLocaleString('pl-PL', opts);
+        setTimeout(updateClock, 1000);
+      })();
+
+      // Scroll progress bar
+      window.addEventListener('scroll', () => {
+        const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        document.getElementById('scroll-progress').style.width = pct + '%';
+      });
     });
-    const titles=["‏‎","H","He","Her","Herb","Herba","Herbat","Herbatn","Herbatni","Herbatnic","Herbatnicz","Herbatnicze","Herbatniczek","Herbatniczek -" ,"Herbatniczek - I" ,"Herbatniczek - In" ,"Herbatniczek - Inf" ,"Herbatniczek - Info", "Herbatniczek - Inf" ,"Herbatniczek - In" ,"Herbatniczek - I" ,"Herbatniczek -" ,"Herbatniczek", "Herbatnicze", "Herbatnicz", "Herbatnic", "Herbatni", "Herbatn", "Herbat", "Herba", "Herb", "Her", "He", "H", "‏‎" ];
-    let idx=0;
-    setInterval(()=>{ document.title=titles[idx]; idx=(idx+1)%titles.length; },400);
-  document.addEventListener('DOMContentLoaded', function() {
-    // Dodajemy losowe cytaty
-    const quotes = [
-      ""
-    ];
-    const quoteElement = document.getElementById('quote');
-
-function showRandomQuote() {
-  if (quoteElement) {
-    const quote = quotes[Math.floor(Math.random() * quotes.length)];
-    quoteElement.textContent = quote;
-  }
-}
-
-showRandomQuote(); // Pokazuje cytat od razu po załadowaniu
-setInterval(showRandomQuote, 2500); // Zmienia cytat co 20 sekund
-  });
-// Zegar w czasie rzeczywistym
-(function() {
-  const clockEl = document.getElementById('clock');
-  function updateClock() {
-    const now = new Date();
-    // opcje do czytelnego formatu
-    const opts = {
-      weekday: 'long',
-      year:   'numeric',
-      month:  'long',
-      day:    'numeric',
-      hour:   '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false,
-      timeZone: 'Europe/Warsaw'
-    };
-    clockEl.textContent = now.toLocaleString('pl-PL', opts);
-  }
-  updateClock();
-  setInterval(updateClock, 1000);
-})();
-(function() {
-  const progress = document.getElementById('scroll-progress');
-  function updateProgress() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    progress.style.width = pct + '%';
-  }
-  window.addEventListener('scroll', updateProgress);
-  // od razu ustaw przy starcie
-  updateProgress();
-})();
-// Easter Egg: Konami Code
-(function() {
-  const egg = document.getElementById('easter-egg');
-  const code = [38,38,40,40,37,39,37,39,66,65]; // ↑↑↓↓←→←→BA
-  let pos = 0;
-
-  window.addEventListener('keydown', (e) => {
-    if (e.keyCode === code[pos]) {
-      pos++;
-      if (pos === code.length) {
-        // uruchom efekt
-        egg.style.display = 'flex';
-        // konfetti!
-        if (window.confetti) {
-          confetti({ particleCount: 300, spread: 100, origin: { y: 0.3 } });
-        }
-        // schowaj po 5s
-        setTimeout(() => egg.style.display = 'none', 5000);
-        pos = 0;
-      }
-    } else {
-      pos = 0; // reset, jeśli pomyłka
-    }
-  });
-})();
-console.log('Preloader element:', document.getElementById('preloader'));
-
-window.onload = () => {
-    const pre = document.getElementById('preloader');
-    pre.classList.add('hidden');             // fade-out
-    setTimeout(() => pre.remove(), 600);     // usuń z DOM
-  };
-</script>
+  </script>
 </body>
 </html>
