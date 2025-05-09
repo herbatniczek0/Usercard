@@ -27,7 +27,7 @@
   <meta name="viewport"            content="width=device-width, initial-scale=1.0">
 
   <title>Herbatniczek</title>
-  <link rel="icon" type="image/png" href="img/avatar.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="img/awatar.webp" sizes="16x16">
 
   <style>
     /* —————— TWÓJ ORYGINALNY CSS BEZ ZMIAN —————— */
@@ -237,6 +237,33 @@
         document.getElementById('scroll-progress').style.width = pct + '%';
       });
     });
+      // ——— ZAMIANA .webp NA .png NA TELEFONACH ———
+      if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        // Zmień avatar
+        const avatarPicture = document.querySelector('.avatar picture');
+        if (avatarPicture) {
+          const img = avatarPicture.querySelector('img');
+          const webp = avatarPicture.querySelector('source[type="image/webp"]');
+          if (img && webp) {
+            const pngSrc = img.src.replace(/\.webp$/i, '.png');
+            webp.remove(); // usuwamy source .webp
+            img.src = pngSrc;
+          }
+        }
+
+        // Zmień wszystkie ikony linków
+        document.querySelectorAll('#links-container picture').forEach(picture => {
+          const img = picture.querySelector('img');
+          const source = picture.querySelector('source');
+          if (img && source) {
+            const pngSrc = img.src.replace(/\.webp$/i, '.png');
+            source.remove(); // usuwamy source .webp
+            img.src = pngSrc;
+          }
+        });
+      }
+      
+
   </script>
 </body>
 </html>
