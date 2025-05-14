@@ -80,9 +80,12 @@
     #preloader.hidden { opacity:0; visibility:hidden; }
     .spinner { width:50px; height:50px; border:5px solid #444; border-top:5px solid var(--main-color); border-radius:50%; animation:spin 1s linear infinite; }
     @keyframes spin { to { transform:rotate(360deg); } }
+
+    
   </style>
 </head>
 <body>
+  <div id="fps-counter" style="position:fixed; bottom:10px; left:10px; color:rgba(255, 255, 255, 0.055); font-size:12px; background-color:rgba(0,0,0,0.7); padding:5px 10px; border-radius:5px;"></div>
   <div id="preloader"><div class="spinner"></div></div>
   <div id="scroll-progress"></div>
   <div id="clock" aria-live="polite"></div>
@@ -181,24 +184,49 @@
       });
 
       // tsParticles
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      tsParticles.load('tsparticles', {
-        fpsLimit: isMobile ? 60 : 1000,
-        particles: {
-          number: { value: isMobile ? 30 : 100 },
-          color: { value: config.mainColor },
-          shape: { type: 'circle' },
-          opacity: { value: 0.7 },
-          size: { value: 3 },
-          links: { enable: true, distance: 340, color: config.mainColor, opacity: 0.2, width: 1.5 },
-          move: { enable: true, speed: 1.2 }
-        },
-        interactivity: {
-          events: { onHover: { enable: true, mode: 'repulse' }, onClick: { enable: true, mode: 'push' } },
-          modes: { repulse: { distance: 100 }, push: { quantity: 4 } }
-        },
-        detectRetina: true
-      });
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+// Konfiguracja dla telefonu
+if (isMobile) {
+  tsParticles.load('tsparticles', {
+    fpsLimit: 60, // Ograniczenie FPS dla urządzeń mobilnych
+    particles: {
+      number: { value: 30, limit: 50 }, // Limit dla cząsteczek na telefonie
+      color: { value: config.mainColor },
+      shape: { type: 'circle' },
+      opacity: { value: 0.7 },
+      size: { value: 3 },
+      links: { enable: true, distance: 340, color: config.mainColor, opacity: 0.2, width: 1.5 },
+      move: { enable: true, speed: 1.2 }
+    },
+    interactivity: {
+      events: { onHover: { enable: true, mode: 'repulse' }, onClick: { enable: true, mode: 'push' } },
+      modes: { repulse: { distance: 100 }, push: { quantity: 4 } }
+    },
+    detectRetina: true
+  });
+}
+// Konfiguracja dla komputera
+else {
+  tsParticles.load('tsparticles', {
+    fpsLimit: 144, // Ograniczenie FPS dla komputerów
+    particles: {
+      number: { value: 75, limit: 120 }, // Limit dla cząsteczek na komputerze
+      color: { value: config.mainColor },
+      shape: { type: 'circle' },
+      opacity: { value: 0.7 },
+      size: { value: 3 },
+      links: { enable: true, distance: 340, color: config.mainColor, opacity: 0.2, width: 1.5 },
+      move: { enable: true, speed: 1.2 }
+    },
+    interactivity: {
+      events: { onHover: { enable: true, mode: 'repulse' }, onClick: { enable: true, mode: 'push' } },
+      modes: { repulse: { distance: 100 }, push: { quantity: 4 } }
+    },
+    detectRetina: true
+  });
+}
+
 
       window.addEventListener('load', () => {
         document.getElementById('preloader').classList.add('hidden');
@@ -262,7 +290,27 @@
           }
         });
       }
-      
+      let lastTime = 0;
+let fps = 0;
+
+function calculateFPS() {
+  const now = performance.now();
+  const delta = now - lastTime;
+  
+  // FPS obliczany jako odwrotność czasu delta (czas pomiędzy klatkami)
+  fps = Math.round(1000 / delta);
+  lastTime = now;
+  
+  // Aktualizacja liczby FPS na stronie
+  document.getElementById('fps-counter').textContent = `FPS: ${fps}`;
+  
+  // Wywołanie funkcji co 100 ms (0.1s)
+  setTimeout(calculateFPS, 100);
+}
+
+// Uruchomienie funkcji liczenia FPS po załadowaniu strony
+window.addEventListener('load', calculateFPS);
+
 
   </script>
 </body>
