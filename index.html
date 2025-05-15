@@ -290,35 +290,29 @@ else {
           }
         });
       }
-// FPS counter with a maximum of 144 FPS
-const MAX_FPS = 144;
-const FRAME_DURATION = 1000 / MAX_FPS;
+// FPS counter optimized -> limit 144 FPS
+(function() {
+  const MAX_FPS = 10000;
+  const FRAME_DURATION = 1000 / MAX_FPS;
+  let lastFrame = performance.now();
+  let lastUpdate = lastFrame;
+  const fpsCounter = document.getElementById('fps-counter');
 
-let lastFrameTime = performance.now();
-let lastFpsUpdate = performance.now();
-let fps = 0;
-
-function calculateFPS(now) {
-  // Ograniczenie wywołań do MAX_FPS
-  if (now - lastFrameTime >= FRAME_DURATION) {
-    const delta = now - lastFrameTime;
-    fps = Math.round(1000 / delta);
-    lastFrameTime = now;
-
-    // Aktualizacja licznika FPS co 100 ms
-    if (now - lastFpsUpdate >= 100) {
-      document.getElementById('fps-counter').textContent = `FPS: ${fps}`;
-      lastFpsUpdate = now;
+  function tick(now) {
+    const elapsed = now - lastFrame;
+    if (elapsed >= FRAME_DURATION) {
+      const currentFPS = Math.round(1000 / elapsed);
+      lastFrame = now;
+      if (now - lastUpdate >= 100) {
+        fpsCounter.textContent = `FPS: ${currentFPS}`;
+        lastUpdate = now;
+      }
     }
+    requestAnimationFrame(tick);
   }
 
-  requestAnimationFrame(calculateFPS);
-}
-
-// Uruchomienie pomiaru FPS po załadowaniu strony
-window.addEventListener('load', () => {
-  requestAnimationFrame(calculateFPS);
-});
+  requestAnimationFrame(tick);
+})();
 
   </script>
 </body>
